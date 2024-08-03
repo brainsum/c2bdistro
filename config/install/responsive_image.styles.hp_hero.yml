@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.hero_large
+    - image.style.hero_mobile
+    - image.style.hero_tablet
+  theme:
+    - c2bd_theme
+id: hp_hero
+label: 'HP hero'
+image_style_mappings:
+  -
+    breakpoint_id: c2bd_theme.tablet
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: hero_large
+  -
+    breakpoint_id: c2bd_theme.mobile
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: hero_tablet
+  -
+    breakpoint_id: c2bd_theme.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: hero_tablet
+breakpoint_group: c2bd_theme
+fallback_image_style: hero_mobile

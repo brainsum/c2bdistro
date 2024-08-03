@@ -1,0 +1,103 @@
+name: 'C2B distro profile'
+type: profile
+description: 'Distribution for quickly starting a new c2bd system with Drupal.'
+version: 1.0.12
+
+core_version_requirement: ^9.1 || ^10
+php: 7.3
+
+distribution:
+  name: 'C2B distro profile'
+
+# Soft dependencies; these may be uninstalled.
+install:
+  # Core.
+  - breakpoint
+  - config
+  - dblog
+  - dynamic_page_cache
+  - language
+  - page_cache
+  - rest
+  - toolbar
+  - update
+  - config_translation
+  - content_translation
+  - locale
+  - views_ui
+  - datetime
+  - datetime_range
+  - menu_ui
+  - field_ui
+  - media_library
+  - block_content
+  - contact
+  - options
+  - content_moderation
+  # Contrib.
+  - admin_toolbar
+  - fullcalendar_view
+  - ckeditor5
+  - paragraphs
+  - classy_paragraphs
+  - inline_form_errors
+  - responsive_image
+  - ctools
+  - field_group
+  - block_field
+  - svg_image
+  - easy_breadcrumb
+  - pathauto
+  - token
+  - metatag
+  - metatag_open_graph
+  - redirect
+  - search_api
+  - search_api_db
+  - facets
+  - core_views_facets
+  - media_thumbnails_pdf
+  - block_content_permissions
+  - markup
+  - recaptcha
+  - openid_connect
+  - openid_connect_windows_aad
+  - role_delegation
+  - recaptcha_v3
+  - smtp
+  - mailsystem
+  - maillog
+  - password_policy
+  - password_policy_character_types
+  - password_policy_history
+  - password_policy_length
+  - dropdown_language
+  - chosen
+  - lightgallery
+  - image_widget_crop
+  - crop
+  # Custom
+  - c2bdistro_core
+# Required dependencies.
+dependencies:
+  # Core.
+  - basic_auth
+  - block
+  - editor
+  - field
+  - file
+  - filter
+  - image
+  - jsonapi
+  - media
+  - path
+  - serialization
+  - taxonomy
+  - text
+  - user
+  - views
+  # Contrib
+
+themes:
+  - claro
+  - c2bd_theme

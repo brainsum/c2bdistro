@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quotes.field_background_style
+    - field.field.paragraph.quotes.field_paragraphs
+    - paragraphs.paragraphs_type.quotes
+  module:
+    - entity_reference_revisions
+id: paragraph.quotes.default
+targetEntityType: paragraph
+bundle: quotes
+mode: default
+content:
+  field_paragraphs:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  field_background_style: true
+  search_api_excerpt: true

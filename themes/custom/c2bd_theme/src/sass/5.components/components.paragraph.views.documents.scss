@@ -1,0 +1,136 @@
+/**
+ * @file
+ * Document Lister Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.views-element-container > .block-inner {
+  max-inline-size: 122.2rem;
+  margin: 0 auto;
+  padding: 0;
+
+  .title-holder {
+    @include block-title-simple;
+
+    margin-block-start: 6rem;
+  }
+}
+
+.lister-page.view-documents {
+  .view-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding-block-start: 4.5rem;
+    column-gap: 4.8rem;
+    row-gap: 9.6rem;
+
+    @include breakpoint(mobile-large) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint(tablet) {
+      grid-template-columns: repeat(4, 1fr);
+      padding-block-start: 9.6rem;
+    }
+
+    .views-row {
+      inline-size: 100%;
+      padding-block-end: 2.5rem;
+      transition: 0.5s;
+      background-color: $background-lightest;
+    }
+
+    .media--view-mode-card {
+      block-size: 100%;
+    }
+
+    .media__content {
+      display: flex;
+      flex-direction: column;
+      block-size: 100%;
+    }
+
+    .thumbnail {
+      flex: 1;
+    }
+
+    .field--name-thumbnail {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-block-size: 30rem;
+      margin-block: 2.5rem;
+    }
+
+    .content-header-text {
+      display: flex;
+      align-items: baseline;
+      margin-inline: 2.5rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+
+      .field--name-created {
+        @include text-small-bold;
+
+        white-space: nowrap;
+      }
+
+      .created-time-pipe {
+        margin-inline: 0.25em;
+      }
+
+      .category-link {
+        a {
+          text-decoration: none;
+          color: $color-secondary;
+          font-family: $font-secondary;
+          font-size: 1.4rem;
+          font-weight: 600;
+          line-height: 1.9rem;
+        }
+      }
+    }
+
+    .field--name-name {
+      display: block;
+      margin-block: 2.2rem;
+      margin-inline: 2.5rem;
+      text-decoration: none;
+      color: $color-primary;
+      font-family: $font-secondary;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 2.2rem;
+
+      @include breakpoint(medium) {
+        min-block-size: 9.2rem;
+      }
+    }
+
+    a.read-more {
+      @include text-read-more;
+
+      margin-block-start: auto;
+      padding-block: 3rem;
+      padding-inline: 2.5rem;
+      transition: 0.5s;
+
+      @include breakpoint(medium) {
+        padding-block: 0;
+      }
+    }
+  }
+
+  .more-link {
+    @include view-more-button;
+
+    margin-block-start: 5rem;
+  }
+}

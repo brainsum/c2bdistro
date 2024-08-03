@@ -1,0 +1,14 @@
+/**
+ * @file
+ * Common settings for special pages like "Page not found", "Access denied" and
+ * unformatted FE pages...
+ *
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+@import "../../../profiles/contrib/c2bdistro/themes/custom/c2bd_theme/src/sass/7.pages/pages.special";

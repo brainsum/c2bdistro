@@ -1,0 +1,211 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_category
+    - field.storage.media.field_media_file
+    - field.storage.media.field_highlighted
+    - field.storage.media.field_lead
+    - field.storage.media.field_tags
+    - field.storage.node.body
+    - field.storage.node.field_highlighted
+    - field.storage.node.field_lead
+    - field.storage.node.field_tags
+    - search_api.server.database_server
+  module:
+    - media
+    - taxonomy
+    - node
+    - search_api
+id: index
+name: 'General search'
+description: ''
+read_only: false
+field_settings:
+  media_bundle:
+    label: 'Media type'
+    datasource_id: 'entity:media'
+    property_path: bundle
+    type: string
+    dependencies:
+      module:
+        - media
+  media_category:
+    label: Category
+    datasource_id: 'entity:media'
+    property_path: field_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_category
+  media_category_name:
+    label: 'Category » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_category:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_category
+      module:
+        - taxonomy
+  media_created:
+    label: 'Authored on'
+    datasource_id: 'entity:media'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - media
+  media_document_description:
+    label: 'Document » Description'
+    datasource_id: 'entity:media'
+    property_path: 'field_media_file:description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_media_file
+  media_highlighted:
+    label: Highlighted
+    datasource_id: 'entity:media'
+    property_path: field_highlighted
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.media.field_highlighted
+  media_lead:
+    label: Lead
+    datasource_id: 'entity:media'
+    property_path: field_lead
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_lead
+  media_name:
+    label: Name
+    datasource_id: 'entity:media'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - media
+  media_status:
+    label: Published
+    datasource_id: 'entity:media'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - media
+  media_tag_name:
+    label: 'Tags » Taxonomy term » Name'
+    datasource_id: 'entity:media'
+    property_path: 'field_tags:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_tags
+      module:
+        - taxonomy
+  media_tags:
+    label: Tags
+    datasource_id: 'entity:media'
+    property_path: field_tags
+    type: integer
+    dependencies:
+      config:
+        - field.storage.media.field_tags
+  node_body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  node_highlighted:
+    label: Highlighted
+    datasource_id: 'entity:node'
+    property_path: field_highlighted
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_highlighted
+  node_lead:
+    label: Lead
+    datasource_id: 'entity:node'
+    property_path: field_lead
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_lead
+  node_status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  node_tag_name:
+    label: 'tags » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
+  node_title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:media':
+    bundles:
+      default: false
+      selected:
+        - document
+    languages:
+      default: true
+      selected: {  }
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  ignorecase:
+    all_fields: false
+    fields:
+      - media_bundle
+      - media_category_name
+      - media_document_description
+      - media_lead
+      - media_name
+      - media_tag_name
+      - node_body
+      - node_lead
+      - node_tag_name
+      - node_title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+  track_changes_in_references: true
+server: database_server

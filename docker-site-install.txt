@@ -1,0 +1,22 @@
+INSTALLATION
+------------
+
+composer create-project brainsum/c2bdistro-project --stability=dev c2bdistro
+(remove git when question appears: Do you want to remove the existing VCS (.git, .svn..) history?)
+
+cd c2bdistro
+cp example.env .env
+bash startup.sh
+
+in container:
+  composer install
+
+outside from container:
+  rm -rf app/web/profiles/contrib/c2bdistro/
+  cd app/web/profiles/contrib
+  git clone git@github.com:brainsum/c2bdistro.git
+  cd c2bdistro
+  git checkout 1.0.x
+
+in container:
+  drush site-install --site-mail=example@mail.com --site-name=C2BDistro c2bdistro -y

@@ -1,0 +1,114 @@
+{
+    "name": "brainsum/c2bdistro",
+    "description": "Distribution for quickly starting a new c2bdistro project system with Drupal",
+    "type": "drupal-profile",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "ikosa",
+            "email": "ikosa@brainsum.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "repositories": {
+        "drupal-8": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "lightgallery": {
+          "type": "package",
+          "package": {
+            "name": "sachinchoolur/lightgallery",
+            "version": "1.10.0",
+            "type": "drupal-library",
+            "source": {
+              "url": "https://github.com/sachinchoolur/lightGallery",
+              "type": "git",
+              "reference": "1.10.0"
+            }
+          }
+        }
+    },
+    "require": {
+        "bower-asset/chosen": "^1.8",
+        "drupal/block_field": "^1.0@RC",
+        "drupal/block_content_permissions": "^1.11",
+        "drupal/fullcalendar_view": "^5.1",
+        "drupal/chosen": "^3.0",
+        "drupal/classy_paragraphs": "^1.0@RC",
+        "drupal/ctools": "^4.1",
+        "drupal/default_content": "^2.0@alpha",
+        "drupal/dropdown_language": "^4.0",
+        "drupal/easy_breadcrumb": "^2.0",
+        "drupal/field_group": "^3.4",
+        "drupal/image_widget_crop": "^2.4",
+        "drupal/lightgallery": "^1.4",
+        "drupal/maillog": "^1.1",
+        "drupal/mailsystem": "^4.4",
+        "drupal/markup": "^2.0@beta",
+        "drupal/media_thumbnails_pdf": "^2.0@beta",
+        "drupal/media_thumbnails": "^1.0@beta",
+        "drupal/metatag": "^1.26",
+        "drupal/openid_connect_windows_aad": "^2.0@beta",
+        "drupal/paragraphs": "^1.17",
+        "drupal/password_policy": "^4.0",
+        "drupal/pathauto": "^1.13",
+        "drupal/recaptcha": "^3.3",
+        "drupal/recaptcha_v3": "^2.0",
+        "drupal/redirect": "^1.9",
+        "drupal/role_delegation": "^1.2",
+        "drupal/search_api": "^1.35",
+        "drupal/smtp": "^1.4",
+        "drupal/structure_sync": "^2.0",
+        "drupal/svg_image": "^3.0",
+        "drupal/token": "^1.15",
+        "drupal/warmer": "^2.0",
+        "drupal/warmer_entity": "^2.0",
+        "drupal/facets": "^2.0",
+        "drupal/core_views_facets": "^2.1",
+        "sachinchoolur/lightgallery": "1.10.0"
+    },
+    "extra": {
+        "installer-paths": {
+          "libraries/{$name}": [
+            "type:drupal-library"
+          ]
+        },
+        "patches": {
+            "drupal/core": {
+                "Keep manually inserted alt": "web/profiles/contrib/c2bdistro/patches/media-keep-manually-inserted-alt.patch"
+            },
+            "drupal/media_thumbnails": {
+                "Ability to edit thumbnail manually or programmatically": "https://www.drupal.org/files/issues/2020-08-06/media_thumbnails-3149842-4.patch",
+                "Keep manually inserted thumbnails": "web/profiles/contrib/c2bdistro/patches/media_thumbnails-keep-manually-inserted-thumbnails.patch"
+            },
+            "drupal/classy_paragraphs": {
+                "Choose and order selectable styles": "https://www.drupal.org/files/issues/2021-02-23/choose_and_order-2830403-44.patch"
+            },
+            "drupal/smtp": {
+                "Maillog support": "https://www.drupal.org/files/issues/2024-07-31/maillog-integration.2920034.23.patch"
+            },
+            "drupal/svg_image": {
+                "Sanitize svg images on uploads": "web/profiles/contrib/c2bdistro/patches/sanitize-svg-images-on-uploads.patch"
+            },
+            "drupal/password_policy": {
+                "Added Password never expires field": "https://www.drupal.org/files/issues/2023-03-30/3338618-added-Password-never-expires-field-7.patch",
+                "Drupal 10 compatibility - to check access by default is deprecated in drupal:9.2.0 and an error will be thrown from drupal:10.0.0.": "https://www.drupal.org/files/issues/2023-10-15/password_policy_accessCheck-3391009.patch"
+            },
+            "drupal/lightgallery": {
+              "Support for Media Image and Video": "https://www.drupal.org/files/issues/2023-11-09/lightgallery-media_support-3204181-27_0.patch"
+            },
+            "drupal/recaptcha_v3": {
+                "Relying on entity queries to check access by default is deprecated in drupal:9.2.0 and an error will be thrown from drupal:10.0.0.": "https://www.drupal.org/files/issues/2023-11-09/added-accessCheck-3400511-2.patch"
+            }
+        }
+    }
+}

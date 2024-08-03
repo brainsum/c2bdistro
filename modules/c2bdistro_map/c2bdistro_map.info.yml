@@ -1,0 +1,5 @@
+name: C2BDistro Map
+description: 'C2BDistro Map features.'
+type: module
+package: C2bdistro
+core_version_requirement: ^9 || ^10

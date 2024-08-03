@@ -1,0 +1,4 @@
+services:
+  c2bdistro_map.geo:
+    class: Drupal\c2bdistro_map\CountriesGeoService
+    arguments: ['@service_container']

@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Button component
+ *
+ * Button types.
+ *
+ * @package: interactive
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.flex-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bordered-button {
+  @include bordered-button;
+}
+
+.bordered-button-blue {
+  @include bordered-button-blue;
+}

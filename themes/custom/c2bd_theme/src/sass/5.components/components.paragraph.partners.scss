@@ -1,0 +1,159 @@
+/**
+ * @file
+ * Partners Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph--type--partners {
+  &.padding {
+    &--high {
+      padding-block-start: 10rem;
+      padding-block-end: 4rem;
+      padding-inline: 0;
+    }
+
+    &--normal {
+      padding-block-start: 6rem;
+      padding-block-end: 0;
+      padding-inline: 0;
+    }
+
+    &--low {
+      padding-block-start: 2rem;
+      padding-block-end: 0;
+      padding-inline: 0;
+    }
+  }
+
+  &,
+  &.width--narrow {
+    .field--name-field-title,
+    .field--name-field-text {
+      @include width-655;
+    }
+  }
+
+  &.width--wide {
+    .field--name-field-title,
+    .field--name-field-text {
+      @include width-1105;
+    }
+  }
+
+  .field--name-field-text {
+    margin-block-end: 9rem;
+  }
+
+  .field--name-field-paragraphs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -1.5rem;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-start;
+    }
+
+    > .field__item {
+      inline-size: 100%;
+      max-inline-size: 35.6rem;
+      padding-block-start: 0;
+      padding-block-end: 1.5rem;
+      padding-inline: 6rem;
+
+      @include breakpoint(tablet) {
+        inline-size: 25%;
+        max-inline-size: none;
+        padding-block-end: 12rem;
+      }
+
+      .paragraph--type--partner {
+        position: relative;
+        max-inline-size: 31.5rem;
+        margin: 0 auto;
+        text-align: center;
+
+        .partner-top {
+          display: flex;
+          justify-content: center;
+          margin-block-end: 1.5rem;
+
+          a {
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            inline-size: 20rem;
+            block-size: 20rem;
+            transition: background-color, 0.2s;
+            border: 0.2rem solid $color-secondary;
+            border-radius: 17rem;
+
+            &:hover {
+              background-color: $color-lightest;
+            }
+          }
+        }
+
+        .partner-title a {
+          display: block;
+          transition: color, 0.2s;
+          font-weight: 700;
+
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+
+        .field--name-field-image {
+          margin-block-end: 3rem;
+        }
+
+        .field--name-field-name,
+        .field--name-field-title,
+        .field--name-field-link {
+          margin-block-end: 2rem;
+          font-size: 1.8rem;
+          line-height: 1.33;
+        }
+
+        .field--name-field-name {
+          font-weight: 700;
+        }
+
+        .field--name-field-title {
+          font-weight: 400;
+        }
+
+        .field--name-field-link {
+          a {
+            transition: all 0.2s;
+
+            &:link,
+            &:visited {
+              color: $color-secondary;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+              color: $body-font-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.style--rounded {
+    .field--name-field-image img {
+      border-radius: 99999rem;
+    }
+  }
+}

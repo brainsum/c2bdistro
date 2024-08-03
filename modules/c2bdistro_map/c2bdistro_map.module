@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * C2BDistro Map module file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function c2bdistro_map_theme() {
+  return [
+    'country_map' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+      'render element' => 'children',
+    ],
+  ];
+}

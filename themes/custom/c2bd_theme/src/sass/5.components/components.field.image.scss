@@ -1,0 +1,36 @@
+/**
+ * @file
+ * Image Field component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+@mixin image-placeholder {
+  &:before {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    content: "";
+    opacity: 0.2;
+    background-image: url("../images/dist/icons/no-img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    box-shadow: inset 0 0 3rem rgb(0 0 0 / 0.8);
+  }
+}
+
+.views-field-field-media-thumbnail,
+.views-field-field-image {
+  @include image-placeholder;
+
+  .field-content {
+    position: relative;
+  }
+}

@@ -1,0 +1,74 @@
+/**
+ * @file
+ * News Lister Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.field--name-field-paragraphs .field__item .paragraph--type--view {
+  .paragraph--inner {
+    @include width-1105;
+
+    .block-views .block-inner {
+      max-inline-size: unset;
+      padding: 0;
+
+      .title-holder {
+        max-inline-size: 115.7rem;
+
+        span {
+          @include block-title;
+
+          text-decoration: none;
+          color: $color-lightest;
+          box-shadow:
+            2.2rem 0 0 $body-font-color,
+            -1.9rem 0 0 $body-font-color;
+          font-family: $font-secondary;
+          font-size: 3.6rem;
+        }
+      }
+
+      .view.lister-page.view-news {
+        padding: 0;
+
+        .view-content {
+          max-inline-size: none;
+          padding: 0;
+          padding-block-start: 11rem;
+        }
+
+        .more-link {
+          padding-block-start: 5.5rem;
+          padding-block-end: 7.5rem;
+          text-align: center;
+
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            inline-size: 26rem;
+            block-size: 5rem;
+            margin: 0 auto;
+            transition: all, 0.2s;
+            color: $body-font-color;
+            border: solid 0.2rem $color-secondary;
+            font-family: $font-secondary;
+            font-size: 1.6rem;
+            font-weight: 600;
+
+            &:hover {
+              color: $color-lightest;
+              background-color: $color-secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+}

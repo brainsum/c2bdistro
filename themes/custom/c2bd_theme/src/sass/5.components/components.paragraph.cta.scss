@@ -1,0 +1,59 @@
+/**
+ * @file
+ * CTA Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph--type--cta {
+  text-align: center;
+
+  .field--name-field-title,
+  .field--name-field-text {
+    & + .field--name-field-link {
+      margin-block-start: 4rem;
+    }
+  }
+
+  .field--name-field-link {
+    display: flex;
+    justify-content: center;
+
+    a {
+      @include bordered-button;
+    }
+  }
+
+  .field--name-field-title {
+    margin-block-end: 5rem;
+    text-align: center;
+    text-decoration: none;
+    color: $body-font-color;
+    font-family: $font-secondary;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .field--name-field-text {
+    margin-block-end: 4rem;
+
+    p {
+      text-align: center;
+      text-decoration: none solid $body-font-color;
+      color: $body-font-color;
+      font-family: $font-primary;
+      font-size: 1.8rem;
+      line-height: 3rem;
+
+      &.text-align-justify {
+        @include text-align(justify, start);
+      }
+    }
+  }
+}

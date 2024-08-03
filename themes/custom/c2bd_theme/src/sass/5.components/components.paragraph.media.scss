@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Media Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@use "sass:color";
+@import "../index";
+
+.paragraph--type--media {
+  .paragraph--inner {
+    .field--type-image {
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    .field--name-field-media-oembed-video {
+      iframe {
+        display: block;
+        inline-size: 100%;
+        min-block-size: 40rem;
+        margin: 0 auto;
+      }
+    }
+
+    .field--name-field-text {
+      padding: 1.5rem;
+      background-color: color.adjust($color-grey-light, $lightness: -5%);
+      font-size: 1.4rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &.width--wide {
+    .paragraph--inner {
+      .field--name-field-media-oembed-video {
+        iframe {
+          min-block-size: 70rem;
+        }
+      }
+    }
+  }
+}

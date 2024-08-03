@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: contact_us
+label: 'Contact us'
+recipients:
+  - dev+c2bdistro@brainsum.com
+reply: ''
+weight: 0
+message: 'Message sent'
+redirect: ''

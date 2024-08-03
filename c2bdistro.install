@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the c2bdistro install profile.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function c2bdistro_install() {
+  // Enable the demo content module. This can't be specified as a dependency
+  // in the c2bdistro.info.yml file, as it requires configuration provided by
+  // the profile (fields etc.).
+  \Drupal::service('module_installer')->install(['c2bdistro_default_content'], TRUE);
+
+  // Create a menu link.
+  $home_page = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'title' => 'Home page',
+  ]);
+  $home_page = reset($home_page);
+  MenuLinkContent::create([
+    'title' => 'Home page',
+    'link' => ['uri' => 'internal:/node/' . $home_page->id()],
+    'menu_name' => 'main',
+    'weight' => 10,
+  ])->save();
+
+  // Set the default front page.
+  \Drupal::configFactory()
+    ->getEditable('system.site')
+    ->set('page.front', '/node/' . $home_page->id())
+    ->save();
+
+  // Create the Events menu item with Events and Calendar sub-menu links.
+  $menu_link_content = MenuLinkContent::create([
+    'title' => 'Events',
+    'link' => ['uri' => 'route:<nolink>'],
+    'menu_name' => 'main',
+    'expanded' => TRUE,
+    'weight' => 40,
+  ]);
+  $menu_link_content->save();
+  $mid = $menu_link_content->getPluginId();
+  MenuLinkContent::create([
+    'title' => 'Events',
+    'link' => ['uri' => 'internal:/events'],
+    'menu_name' => 'main',
+    'parent' => $mid,
+    'weight' => 10,
+  ])->save();
+  MenuLinkContent::create([
+    'title' => 'Calendar',
+    'link' => ['uri' => 'internal:/calendar'],
+    'menu_name' => 'main',
+    'parent' => $mid,
+    'weight' => 20,
+  ])->save();
+
+  // Create a Contact us footer menu link.
+  MenuLinkContent::create([
+    'title' => 'Contact us',
+    'link' => ['uri' => 'mailto:contact@example.com'],
+    'menu_name' => 'footer',
+    'weight' => 100,
+  ])->save();
+
+  // Place the HP hero custom content block.
+  _c2bdistro_place_the_hp_hero_block();
+
+  // Place the Footer custom content block.
+  _c2bdistro_place_the_footer_block_content();
+
+  // Place the Selector cards block to the Resources page.
+  _c2bdistro_place_selector_cards_block();
+}
+
+/**
+ * Place the HP hero custom content block.
+ */
+function _c2bdistro_place_the_hp_hero_block() {
+  $values = [
+    'id' => 'hphero',
+    'plugin' => 'block_content:19284f87-8ad9-4c7d-bac2-01ec669b41f1',
+    'region' => 'top',
+    'theme' => 'c2bd_theme',
+    'weight' => 0,
+  ];
+  $block = Block::create($values);
+  $visibility['request_path']['pages'] = '<front>';
+  $block->setVisibilityConfig('request_path', $visibility['request_path']);
+  $block->save();
+}
+
+/**
+ * Place the Footer custom content block.
+ */
+function _c2bdistro_place_the_footer_block_content() {
+  $values = [
+    'id' => 'footerblockcontent',
+    'plugin' => 'block_content:f0ba0b00-072c-4c7d-ae22-89b9fd58a635',
+    'region' => 'footer',
+    'theme' => 'c2bd_theme',
+    'weight' => 0,
+  ];
+  $block = Block::create($values);
+  $block->save();
+}
+
+/**
+ * Place the Selector cards block to the Resources page.
+ */
+function _c2bdistro_place_selector_cards_block() {
+  $resources_page = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'title' => 'Resources',
+  ]);
+  $resources_page = reset($resources_page);
+  $values = [
+    'id' => 'views_block__selector_cards_selector_cards_block',
+    'plugin' => 'views_block:selector_cards-selector_cards_block',
+    'region' => 'bottom',
+    'theme' => 'c2bd_theme',
+    'weight' => 0,
+    'settings' => [
+      'label_display' => FALSE,
+    ],
+  ];
+  $block = Block::create($values);
+  $visibility['request_path']['pages'] = '/node/' . $resources_page->id();
+  $block->setVisibilityConfig('request_path', $visibility['request_path']);
+  $block->save();
+}

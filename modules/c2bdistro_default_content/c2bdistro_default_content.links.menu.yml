@@ -1,0 +1,20 @@
+c2bdistro_default_content.the_team:
+  title: The team
+  description: The team
+  menu_name: main
+  url: 'internal:/meet-team'
+  weight: 15
+
+c2bdistro_default_content.what_we_do:
+  title: What we do
+  description: What we do
+  menu_name: main
+  route_name: <nolink>
+  weight: 16
+
+c2bdistro_default_content.get_involved:
+  title: Get involved
+  description: Get involved
+  menu_name: main
+  url: 'internal:/contact'
+  weight: 50

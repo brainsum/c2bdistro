@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+  ]
+%}
+
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    {{ content }}
+
+    {{ site_name }}
+
+    <div class="social-block">
+      <a href="{{ url('view.search.page') }}" target="_blank" rel="nofollow" class="search-icon">
+        <img src="/{{ c2bd_theme_path }}/images/dist/svg/search-solid.svg" alt="{{ 'magnifier icon'|t }}">
+      </a>
+    </div>
+    <div class="mobile-icons">
+      <div class="hamburger">
+        <img src="/{{ c2bd_theme_path }}/images/dist/icons/hamburger.svg" alt="{{ 'menu icon (three stripes)'|t }}">
+      </div>
+    </div>
+  </div>
+{% endif %}

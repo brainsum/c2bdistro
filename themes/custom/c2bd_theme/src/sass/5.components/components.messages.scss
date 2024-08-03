@@ -1,0 +1,21 @@
+/**
+ * @file
+ * Messages Component
+ *
+ * Theming Drupal system messages
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.system-messages {
+  .inner-container {
+    @include width-1200;
+
+    padding-block: 2rem;
+  }
+}

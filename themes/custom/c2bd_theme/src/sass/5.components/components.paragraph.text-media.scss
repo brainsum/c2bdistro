@@ -1,0 +1,115 @@
+/**
+ * @file
+ * Text and Media Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph--type--text-media {
+  .paragraph--inner {
+    @include width-1105;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint(medium) {
+      @include flex-direction(row);
+      .left,
+      .right {
+        inline-size: 50%;
+      }
+    }
+  }
+
+  .lightgallery {
+    li {
+      list-style: none;
+      a {
+        display: block;
+        cursor: zoom-in;
+      }
+    }
+  }
+
+  .right {
+    .text-formatted p a {
+      text-decoration: underline;
+      color: $color-secondary;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &.paragraph--view-mode--invers {
+    .right {
+      order: -1;
+
+      @include breakpoint(medium) {
+        order: 2;
+      }
+    }
+
+    .left {
+      @include breakpoint(medium) {
+        padding-inline-end: 5.5rem;
+      }
+    }
+  }
+
+  &.paragraph--view-mode--default {
+    .right {
+      @include breakpoint(medium) {
+        padding-inline-start: 12.5%;
+      }
+    }
+  }
+
+  iframe {
+    inline-size: 100%;
+    min-block-size: 30rem;
+  }
+
+  .field--name-field-media {
+    margin-block-end: 3rem;
+
+    @include breakpoint(medium) {
+      margin-block-end: 0;
+    }
+
+    img {
+      inline-size: 100%;
+    }
+  }
+
+  .field--name-field-link {
+    margin-block-start: 4rem;
+
+    a {
+      @include font-open-18;
+
+      position: relative;
+      padding-inline-start: 3rem;
+      text-decoration: underline;
+
+      &::before {
+        position: absolute;
+        inset-block-start: 0.2rem;
+        inset-inline-start: 0;
+        padding-inline-end: 1.5rem;
+        content: url("../../images/dist/icons/arrow-right.svg");
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

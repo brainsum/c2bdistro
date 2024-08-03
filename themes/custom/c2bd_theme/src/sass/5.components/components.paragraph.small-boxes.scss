@@ -1,0 +1,88 @@
+/**
+ * @file
+ * Small Boxes Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph--type--small-boxes {
+  padding-block-start: 0;
+
+  > .paragraph--inner {
+    position: relative;
+    padding-block-start: 10rem;
+    padding-block-end: 5rem;
+
+    @include breakpoint(medium) {
+      padding-block-end: 10rem;
+    }
+
+    > .field--name-field-title {
+      @include block-title;
+
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      margin-block-start: -1.7rem;
+      padding: 0;
+    }
+
+    .field--name-field-paragraphs {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      margin: 0 -0.7rem;
+
+      @include breakpoint(medium) {
+        flex-direction: row;
+      }
+
+      > .field__item {
+        inline-size: 100%;
+        margin-block-end: 1.4rem;
+        padding: 0 0.7rem;
+
+        @include breakpoint(medium) {
+          inline-size: 33%;
+        }
+      }
+    }
+  }
+}
+
+.paragraph--type--small-box {
+  border: 0.1rem solid $background-quaternary;
+  background-color: $background-lightest;
+
+  .paragraph--inner {
+    position: relative;
+
+    span,
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 100%;
+      block-size: 11.3rem;
+      padding: 2rem;
+      transition: color, 0.2s;
+      font-family: $font-secondary;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 2rem;
+
+      @include breakpoint(medium) {
+        justify-content: flex-start;
+      }
+    }
+
+    a:hover {
+      color: $color-secondary;
+    }
+  }
+}

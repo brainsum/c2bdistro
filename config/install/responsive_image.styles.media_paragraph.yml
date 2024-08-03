@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.narrow_full_width
+    - image.style.wide_full_width
+  theme:
+    - c2bd_theme
+id: media_paragraph
+label: 'Media paragraph'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: wide_full_width
+    breakpoint_id: c2bd_theme.medium
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: narrow_full_width
+    breakpoint_id: c2bd_theme.small
+    multiplier: 1x
+breakpoint_group: c2bd_theme
+fallback_image_style: '_original image_'

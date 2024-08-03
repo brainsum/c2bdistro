@@ -1,0 +1,127 @@
+/**
+ * @file
+ * Paragraph Base Component
+ *
+ * All common rules.
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph {
+  font-family: $font-primary;
+
+  // style options
+  &.background-color {
+    &--white {
+      background-color: $background-lightest;
+    }
+
+    &--grey {
+      background-color: $background-primary;
+    }
+
+    &--lightgrey {
+      background-color: $background-quaternary;
+    }
+  }
+
+  // general styles
+  .field--name-field-title {
+    margin-block-end: 2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .block-holder {
+    .block-inner {
+      position: relative;
+
+      .title-holder {
+        position: absolute;
+        z-index: 10;
+        inset-block-start: -2.5rem;
+        inset-inline: 0;
+        margin: 0;
+
+        span {
+          @include block-title;
+        }
+      }
+    }
+  }
+
+  > .paragraph--inner {
+    .field--name-field-text,
+    .field--name-field-plaintext {
+      @include font-open-18;
+    }
+  }
+}
+
+.paragraph--type--text,
+.paragraph--type--cta,
+.paragraph--type--accordion,
+.paragraph--type--text-media,
+.paragraph--type--link-boxes,
+.paragraph--type--popup-wrapper,
+.paragraph--type--timeline-wrapper,
+.paragraph--type--quotes,
+.paragraph--type--media,
+.paragraph--type--partners {
+  padding: 4.5rem 0;
+}
+
+.paragraph--type--popup-wrapper {
+  > .paragraph--inner {
+    @include width-690;
+
+    @include breakpoint(medium) {
+      @include width-655;
+    }
+  }
+}
+
+.paragraph--type--text,
+.paragraph--type--cta,
+.paragraph--type--accordion,
+.paragraph--type--media {
+  &,
+  &.width--narrow {
+    > .paragraph--inner {
+      @include width-690;
+
+      @include breakpoint(medium) {
+        @include width-655;
+      }
+    }
+  }
+
+  &.width--wide {
+    > .paragraph--inner {
+      @include width-1105;
+    }
+  }
+}
+
+.paragraph--type--quotes {
+  > .paragraph--inner {
+    @include width-855;
+  }
+}
+
+.paragraph--type--media-document,
+.paragraph--type--view,
+.paragraph--type--partners,
+.paragraph--type--link-boxes,
+.paragraph--type--timeline-wrapper,
+.paragraph--type--small-boxes {
+  > .paragraph--inner {
+    @include width-1105;
+  }
+}

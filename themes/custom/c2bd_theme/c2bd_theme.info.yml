@@ -1,0 +1,55 @@
+# Theme's name for admin UI, change for your project, like Diginomica Theme
+name: "C2BD theme"
+type: theme
+# Short description text for admin UI, change for your project
+description: "Drupal 8 coding standards ready theme powered by Gulp 4 based on Classy."
+core_version_requirement: ^9 || ^10
+# website logo, begin with Drupal 8.6 you can use SVG or PNG format too
+logo: logo.png
+# screenshot cover image for admin UI (588x438): take a screenshot about home page
+screenshot: screenshot.png
+package: brainsum
+# Defines the base theme, change it for your needs
+base theme: classy
+# Defines libraries group in which we can add css/js.
+dependencies:
+  - classy:classy
+libraries:
+  - c2bd_theme/global-styling
+# Regions, change it for your needs (don't forget change page template too)
+libraries-override:
+  core/picturefill: false
+  core/drupal.dropbutton: false
+  classy/base:
+    css:
+      component:
+        css/components/action-links.css: false
+        css/components/breadcrumb.css: false
+        css/components/button.css: false
+        css/components/collapse-processed.css: false
+        css/components/container-inline.css: false
+        css/components/details.css: false
+        css/components/exposed-filters.css: false
+        css/components/field.css: false
+        css/components/form.css: false
+        css/components/inline-form.css: false
+        css/components/icons.css: false
+        css/components/item-list.css: false
+        css/components/link.css: false
+        css/components/links.css: false
+        css/components/more-link.css: false
+        css/components/menu.css: false
+        css/components/tabledrag.css: false
+        css/components/tableselect.css: false
+        css/components/tablesort.css: false
+        css/components/ui-dialog.css: false
+regions:
+  top_bar: Top Bar
+  header: Header
+  navigation: Navigation
+  featured: Featured
+  help: Help
+  top: Top
+  content: Content
+  bottom: Bottom
+  footer: Footer

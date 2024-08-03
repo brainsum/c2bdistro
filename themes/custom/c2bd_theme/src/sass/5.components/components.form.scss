@@ -1,0 +1,218 @@
+/**
+ * @file
+ * Form component
+ *
+ * Form and input elements, like:
+ *  - input (text, number, email, password...)*
+ *  - textarea
+ *  - select
+ *  - radios and checkboxes
+ *
+ * Buttons and `input[type="submit"]` are in Button component.
+ *
+ * @package: interactive
+ * @see more 5.components/components.search
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+select.form-select,
+input[data-drupal-selector="edit-search-api-fulltext"] {
+  padding: 0.9rem 1.1rem;
+  border: 0;
+  font-family: $font-primary;
+}
+
+select.form-select {
+  cursor: pointer;
+}
+
+input,
+select {
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-type-textfield,
+.form-type-email,
+.form-type-entity-autocomplete,
+.form-type-select,
+.form-type-textarea,
+.form-type-password {
+  inline-size: 100%;
+  margin-inline-end: 0;
+
+  label {
+    display: block;
+    margin-block-end: 0.6rem;
+    text-decoration: none;
+    opacity: 0.9;
+    color: $color-primary;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 3rem;
+  }
+
+  select,
+  input {
+    inline-size: 100%;
+    block-size: 4.4rem;
+    padding: 1rem;
+    border: 0;
+    background-color: $color-shade1;
+  }
+  textarea {
+    inline-size: 100%;
+    block-size: 31.5rem;
+    padding: 1rem;
+    border: 0;
+    background-color: $color-shade1;
+  }
+}
+
+input.form-submit {
+  @include bordered-button;
+}
+
+input.form-submit.js-hide {
+  @include bordered-button-small;
+
+  padding: 0 3.5rem;
+}
+
+.page-node-type-page {
+  .block-views-exposed-filter-blockdisaster-law-database-main {
+    padding-block-start: 5.5rem;
+    padding-block-end: 5rem;
+    background-color: $background-lightest;
+
+    .block-inner {
+      @include width-655;
+
+      .form--inline {
+        display: flex;
+        justify-content: center;
+        inline-size: 100%;
+
+        label {
+          display: none;
+        }
+
+        input.form-submit {
+          block-size: 4.4rem;
+          min-block-size: 4.4rem;
+        }
+      }
+    }
+  }
+}
+
+.path-contact {
+  .block-system-main-block {
+    padding: 5rem 0 !important;
+    background-color: $background-lightest;
+
+    @include breakpoint(tablet) {
+      padding: 8rem !important;
+    }
+
+    .block-inner {
+      @include width-1105;
+    }
+  }
+}
+.contact-form {
+  display: flex;
+  flex-wrap: wrap;
+
+  .left,
+  .right {
+    inline-size: 100%;
+
+    @include breakpoint(mobile) {
+      inline-size: 80%;
+      margin: 0 auto;
+    }
+
+    @include breakpoint(medium) {
+      inline-size: 60%;
+    }
+
+    @include breakpoint(tablet) {
+      inline-size: 50%;
+    }
+  }
+
+  .left {
+    @include breakpoint(tablet) {
+      padding-inline-end: 2rem;
+    }
+  }
+
+  .right {
+    @include breakpoint(tablet) {
+      padding-inline-start: 2rem;
+    }
+    .ajax-progress {
+      display: none;
+    }
+  }
+
+  .form-wrapper:not(:first-child) {
+    margin-block-start: 4.2rem;
+  }
+
+  .form-managed-file {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .form-submit {
+      @include bordered-button-small;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    inline-size: 100%;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 1.4rem;
+
+    a {
+      text-decoration: underline;
+      color: $color-secondary;
+    }
+  }
+  input[data-drupal-selector="edit-preview"] {
+    display: none;
+  }
+}
+
+.path-user {
+  .user-login-form {
+    @include width-655;
+
+    padding-block-end: 10rem;
+  }
+
+  .js-form-item {
+    margin-block-end: 3rem;
+  }
+
+  select,
+  input,
+  textarea {
+    background-color: $background-lightest;
+  }
+}

@@ -1,0 +1,156 @@
+/**
+ * @file
+ * Contact Form Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.block-page-title-block {
+  margin-block-start: 7.8rem !important;
+  margin-block-end: 3.3rem !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+
+  .block-inner {
+    h1.page-title {
+      margin-inline-start: 0 !important;
+      text-align: center !important;
+      font-size: 4rem !important;
+      line-height: 4.9rem !important;
+    }
+  }
+}
+
+.contact-form {
+  padding-block-end: 11.2rem;
+  background-color: $background-lightest;
+
+  .form-container {
+    @include width-1200;
+
+    border: 0;
+
+    legend {
+      display: none;
+    }
+
+    .fieldset-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-block-start: 6.8rem;
+      margin-inline: -2.4rem;
+
+      .left {
+        inline-size: 100%;
+        padding-inline: 2.4rem;
+
+        @include breakpoint(medium) {
+          inline-size: calc(3 / 8 * 100%);
+        }
+
+        #edit-field-upload-label-wrapper {
+          margin-block-start: 5.1rem;
+          margin-block-end: 1.8rem;
+          text-decoration: none solid $body-font-color;
+          color: $color-primary;
+          font-family: $font-secondary;
+          font-size: 2.4rem;
+          font-weight: 700;
+          line-height: 3rem;
+        }
+
+        #edit-field-contact-reason {
+          padding-block: 1rem;
+          padding-inline-start: 1rem;
+          padding-inline-end: 5rem;
+        }
+
+        .field--name-field-attachment {
+          label {
+            text-decoration: none;
+            color: $body-font-color;
+            font-family: $font-secondary;
+            font-size: 1.8rem;
+            font-weight: 700;
+          }
+
+          input[type="file"] {
+            inline-size: 100%;
+            margin-block-start: 1rem;
+          }
+
+          input[type="submit"] {
+            inline-size: 23.1rem;
+            block-size: 4.7rem;
+            margin: 2rem 0;
+          }
+
+          .description {
+            text-decoration: none solid #000;
+            color: $body-font-color;
+            font-family: $font-primary;
+            font-size: 1.6rem;
+            line-height: 2.5rem;
+          }
+        }
+      }
+
+      .right {
+        inline-size: 100%;
+        padding-inline: 2.4rem;
+
+        @include breakpoint(medium) {
+          inline-size: calc(5 / 8 * 100%);
+        }
+      }
+    }
+
+    #edit-field-terms-and-conditions-wrapper {
+      inline-size: 100%;
+      margin-block-start: 5.6rem;
+      margin-block-end: 2.1rem;
+      padding: 0 1rem;
+      text-align: center;
+      color: $body-font-color;
+      font-family: $font-primary;
+      font-size: 1.6rem;
+
+      a {
+        text-decoration: underline solid $body-font-color;
+      }
+    }
+  }
+  .form-actions {
+    margin-block-start: 2.1rem !important;
+  }
+
+  input#edit-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 23.1rem;
+    text-align: center;
+    text-decoration: none solid $body-font-color;
+    color: $body-font-color;
+    font-family: $font-secondary;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+
+    &:hover {
+      color: $color-lightest;
+      border-color: $color-secondary !important;
+      background-color: $color-secondary !important;
+    }
+  }
+
+  .captcha {
+    display: flex;
+    justify-content: center;
+    inline-size: 100%;
+  }
+}
