@@ -1,0 +1,19 @@
+/**
+ * @file
+ * SMACSS: theme
+ *
+ * Purely visual styling ("look-and-feel") for components.
+ *
+ * ITCSS: -
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "index";
+
+.node--unpublished {
+  background-color: transparent;
+}

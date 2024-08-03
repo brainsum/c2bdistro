@@ -1,0 +1,4 @@
+name: Étiquettes
+widget:
+  config:
+    reset_text: 'Tout afficher'

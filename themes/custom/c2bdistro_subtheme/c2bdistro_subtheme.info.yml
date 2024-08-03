@@ -1,0 +1,62 @@
+name: C2bdistro Subtheme
+type: theme
+base theme: c2bd_theme
+description: A flexible theme with a responsive, mobile-first layout.
+package: Custom
+core_version_requirement: ^10
+libraries-override:
+  c2bd_theme/global-styling: c2bdistro_subtheme/global-styling
+  c2bd_theme/block.footer: c2bdistro_subtheme/block.footer
+  c2bd_theme/block.hero: c2bdistro_subtheme/block.hero
+  c2bd_theme/block.language-switcher: c2bdistro_subtheme/block.language-switcher
+  c2bd_theme/block.title: c2bdistro_subtheme/block.title
+  c2bd_theme/media.document: c2bdistro_subtheme/media.document
+  c2bd_theme/node.event: c2bdistro_subtheme/node.event
+  c2bd_theme/node.news: c2bdistro_subtheme/node.news
+  c2bd_theme/node.page: c2bdistro_subtheme/node.page
+  c2bd_theme/tags: c2bdistro_subtheme/tags
+  c2bd_theme/facets: c2bdistro_subtheme/facets
+  c2bd_theme/field: c2bdistro_subtheme/field
+  c2bd_theme/field.image: c2bdistro_subtheme/field.image
+  c2bd_theme/form: c2bdistro_subtheme/form
+  c2bd_theme/form.contact: c2bdistro_subtheme/form.contact
+  c2bd_theme/submit.loader: c2bdistro_subtheme/submit.loader
+  c2bd_theme/share-button: c2bdistro_subtheme/share-button
+  c2bd_theme/messages: c2bdistro_subtheme/messages
+  c2bd_theme/navigation-menu: c2bdistro_subtheme/navigation-menu
+  c2bd_theme/pager: c2bdistro_subtheme/pager
+  c2bd_theme/primary-tabs: c2bdistro_subtheme/primary-tabs
+  c2bd_theme/pages.special: c2bdistro_subtheme/pages.special
+  c2bd_theme/paragraphs-base: c2bdistro_subtheme/paragraphs-base
+  c2bd_theme/paragraph.accordion: c2bdistro_subtheme/paragraph.accordion
+  c2bd_theme/paragraph.cta: c2bdistro_subtheme/paragraph.cta
+  c2bd_theme/paragraph.link-boxes: c2bdistro_subtheme/paragraph.link-boxes
+  c2bd_theme/paragraph.paragraph.media: c2bdistro_subtheme/paragraph.media
+  c2bd_theme/paragraph.paragraph.media-document: c2bdistro_subtheme/paragraph.media-document
+  c2bd_theme/paragraph.partners: c2bdistro_subtheme/paragraph.partners
+  c2bd_theme/paragraph.popup: c2bdistro_subtheme/paragraph.popup
+  c2bd_theme/paragraph.quote: c2bdistro_subtheme/paragraph.quote
+  c2bd_theme/paragraph.small-boxes: c2bdistro_subtheme/paragraph.small-boxes
+  c2bd_theme/paragraph.tabs: c2bdistro_subtheme/paragraph.tabs
+  c2bd_theme/paragraph.text: c2bdistro_subtheme/paragraph.text
+  c2bd_theme/paragraph.text-media: c2bdistro_subtheme/paragraph.text-media
+  c2bd_theme/paragraph.timeline: c2bdistro_subtheme/paragraph.timeline
+  c2bd_theme/paragraph.views: c2bdistro_subtheme/paragraph.views
+  c2bd_theme/paragraph.views.documents: c2bdistro_subtheme/paragraph.views.documents
+  c2bd_theme/paragraph.views.events: c2bdistro_subtheme/paragraph.views.events
+  c2bd_theme/paragraph.views.news: c2bdistro_subtheme/paragraph.views.news
+  c2bd_theme/views.events: c2bdistro_subtheme/views.events
+  c2bd_theme/views.news: c2bdistro_subtheme/views.news
+  c2bd_theme/views.resources.page: c2bdistro_subtheme/views.resources.page
+  c2bd_theme/views.search.page: c2bdistro_subtheme/views.search.page
+  c2bd_theme/views.selector-cards: c2bdistro_subtheme/views.selector-cards
+regions:
+  top_bar: Top Bar
+  header: Header
+  navigation: Navigation
+  featured: Featured
+  help: Help
+  top: Top
+  content: Content
+  bottom: Bottom
+  footer: Footer

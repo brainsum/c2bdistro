@@ -1,0 +1,32 @@
+/**
+ * @file
+ * Field Component
+ *
+ * Common field styles.
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.field--label-inline {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: $font-primary;
+
+  @include breakpoint(medium) {
+    flex-direction: row;
+  }
+
+  .field__label {
+    font-weight: 700;
+
+    &:after {
+      content: ": ";
+    }
+  }
+}

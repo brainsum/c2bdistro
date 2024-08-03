@@ -1,0 +1,184 @@
+/**
+ * @file
+ * Facets component
+ *
+ * Filtering by tags.
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.path-resources {
+  .block-page-title-block .block-inner {
+    @include width-1390;
+  }
+
+  .block-page-title-block {
+    max-inline-size: 100%;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+
+    .block-inner h1.page-title {
+      margin-block-start: 6rem;
+      margin-block-end: 3rem;
+      margin-inline: 0;
+      text-align: start;
+      font-size: 3rem;
+      line-height: 1.16;
+
+      @include breakpoint(mobile) {
+        margin-block-end: 2.2rem;
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+.block-facet-blocktags-of-document {
+  @include width-1390;
+  @include clearfix;
+
+  margin-block-start: 3rem;
+  margin-block-end: 2.3rem;
+  margin-inline: auto;
+
+  @include breakpoint(mobile) {
+    margin-block-start: 4rem;
+    margin-block-end: 3.5rem;
+  }
+
+  .item-list__links {
+    margin: -0.25rem;
+  }
+
+  .facet-item {
+    display: block;
+    float: inline-start;
+    padding: 0.25rem;
+
+    .facet-wrapper {
+      padding: 1.5rem;
+      background: #f6f6f6;
+
+      &.active {
+        background: $background-lightest;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $body-font-color;
+      font-family: $font-secondary;
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1.8rem;
+    }
+
+    .js-facet-deactivate {
+      position: relative;
+      inset-block-start: 0.2rem;
+      display: inline-block;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      background-image: url("../../images/dist/icons/close-dark.svg");
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.views-element-container {
+  @include width-1390;
+}
+.view-search {
+  clear: both;
+  padding-block-start: 3.5rem;
+}
+
+.block-views-exposed-filter-blocksearch-resources {
+  @include width-1390;
+
+  .form--inline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @include breakpoint(mobile) {
+      flex-wrap: nowrap;
+      align-items: flex-end;
+    }
+  }
+
+  .form-type-textfield {
+    @include breakpoint(mobile) {
+      float: inline-start;
+      max-inline-size: 41.1rem;
+    }
+
+    input {
+      block-size: 4.8rem;
+      border: 0.1rem solid $border-color;
+      background-color: $background-lightest;
+      background-image: url("../../images/dist/icons/search.svg");
+      background-repeat: no-repeat;
+      background-size: 2.2rem;
+
+      @include breakpoint(mobile) {
+        padding-inline-start: 2.3rem;
+      }
+
+      [dir="ltr"] & {
+        background-position: 98% center;
+      }
+
+      [dir="rtl"] & {
+        background-position: 2% center;
+      }
+    }
+  }
+  .form-item-category {
+    margin-block-start: 2.1rem;
+
+    @include breakpoint(mobile) {
+      max-inline-size: 38.6rem;
+      margin-block-start: 0;
+      margin-inline-start: 1rem;
+    }
+
+    @include breakpoint(medium) {
+      margin-inline-start: 2.7rem;
+    }
+
+    select {
+      block-size: 4.8rem;
+      border: 0.1rem solid $color-shade4;
+      background-color: $background-lightest;
+    }
+  }
+
+  .form-actions {
+    inline-size: 100%;
+    margin-block-start: 2.6rem;
+
+    @include breakpoint(mobile) {
+      inline-size: auto;
+      margin-block-start: 0;
+      margin-inline-start: 1rem;
+    }
+
+    @include breakpoint(medium) {
+      margin-inline-start: 2.7rem;
+    }
+  }
+
+  input.form-submit {
+    @include breakpoint(mobile down) {
+      inline-size: 100%;
+    }
+  }
+}

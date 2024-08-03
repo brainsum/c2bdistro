@@ -1,0 +1,105 @@
+/**
+ * @file
+ * Link Boxes Paragraph Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.paragraph--type--link-boxes {
+  > .paragraph--inner {
+    > .field__items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-block-end: -5%;
+
+      @include breakpoint(medium) {
+        margin: -2.5% 0;
+      }
+
+      > .field__item {
+        inline-size: 100%;
+        margin-block-start: 0;
+        margin-block-end: 5%;
+        margin-inline: 0;
+        background-color: $background-primary;
+        font-size: 1.4rem;
+
+        @include breakpoint(medium) {
+          inline-size: 40%;
+          margin: 2.5%;
+        }
+      }
+    }
+
+    .view,
+    .paragraph--type--link-box {
+      padding-block-start: 2.5rem;
+      padding-block-end: 4.5rem;
+      padding-inline: 2.5rem;
+      text-align: center;
+
+      .paragraph--inner {
+        position: relative;
+      }
+
+      .view-header h3,
+      .field--name-field-title {
+        margin-block-end: 4rem;
+        font-family: $font-secondary;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .field--name-field-media {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        inline-size: 4rem;
+        block-size: 4rem;
+
+        img {
+          display: block;
+          margin-inline-start: auto;
+        }
+      }
+
+      .view-content,
+      .field__items {
+        .views-row,
+        .field__item {
+          margin-block-end: 2.8rem;
+
+          &:last-child {
+            margin-block-end: 0;
+          }
+
+          a {
+            font-size: 1.4rem;
+            line-height: 3rem;
+          }
+        }
+
+        & + .field__items {
+          margin-block-start: 2.8rem;
+        }
+      }
+
+      .view-footer,
+      .field--name-field-links {
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      .view-footer {
+        margin-block-start: 3.5rem;
+      }
+    }
+  }
+}

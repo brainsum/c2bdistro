@@ -1,0 +1,353 @@
+global-styling:
+  version: 1.0.0
+  css:
+    base:
+      //fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Open+Sans:wght@400;700&display=swap: { type: external }
+      css/3.base/base.typography.css: {}
+    component:
+      css/5.components/components.header.css: {}
+      css/5.components/components.button.css: {}
+    theme:
+      css/theme.css: {}
+
+# Block
+block.footer:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.block.footer.css: {}
+
+block.hero:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.block.hero.css: {}
+
+block.language-switcher:
+  version: 2.0.0
+  css:
+    component:
+      css/5.components/components.block.language-switcher.css: {}
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.block.language-switcher.js: {}
+  dependencies:
+    - core/drupal
+
+block.title:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.block.title.css: {}
+
+# Content
+media.document:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.media.document.css: {}
+  dependencies:
+    - c2bdistro_subtheme/tags
+
+node.event:
+  version: 1.0.0
+  dependencies:
+    - c2bdistro_subtheme/node.news
+
+node.news:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.node.news.css: {}
+  dependencies:
+    - c2bdistro_subtheme/tags
+
+node.page:
+  version: 1.1.0
+  css:
+    component:
+      css/5.components/components.node.page.css: {}
+
+tags:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.tags.css: {}
+
+# Facets
+facets:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.facets.css: {}
+  dependencies:
+    - c2bdistro_subtheme/form
+
+# Field
+field:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.field.css: {}
+
+field.image:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.field.image.css: {}
+
+# Form
+form:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.form.css: {}
+
+form.contact:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.form.contact.css: {}
+  dependencies:
+    - c2bdistro_subtheme/form
+
+submit.loader:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.submit.loader.css: {}
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.submit.loader.js: {}
+  dependencies:
+    - core/drupal
+
+# Includes
+share-button:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.share-button.css: {}
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.share-button.js: { }
+  dependencies:
+    - core/drupal
+
+# Misc
+messages:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.messages.css: {}
+
+# Navigation
+navigation-menu:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.navigation-menu.css: {}
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.navigation-menu.js: {}
+    dependencies:
+    - core/drupal
+    - core/jquery
+
+pager:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.pager.css: {}
+
+primary-tabs:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.primary-tabs.css: {}
+
+# Pages
+pages.special:
+  css:
+    theme:
+      css/7.pages/pages.special.css: {}
+  dependencies:
+    - c2bdistro_subtheme/form
+
+# Paragraph Types
+paragraphs-base:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraphs-base.css: {}
+
+paragraph.accordion:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.accordion.css: { }
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.paragraph.accordion.js: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+    - core/drupal
+    - core/jquery
+
+paragraph.cta:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.cta.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.link-boxes:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.link-boxes.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.media:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.media.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+# currently it's not attached
+paragraph.media-document:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.media-document.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.partners:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.partners.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.popup:
+  version: 1.0.0
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.paragraph.popup.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+paragraph.quote:
+  version: 1.0.0
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.paragraph.quote.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+paragraph.small-boxes:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.small-boxes.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.tabs:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.tabs.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.text:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.text.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.text-media:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.text-media.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.timeline:
+  version: 1.0.0
+  js:
+    /profiles/contrib/c2bdistro/themes/custom/c2bd_theme/js/components.paragraph.timeline.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+paragraph.views:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.views.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.views.documents:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.views.documents.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+
+paragraph.views.events:
+  version: 1.0.0
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+    - c2bdistro_subtheme/views.events
+
+paragraph.views.news:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.paragraph.views.news.css: {}
+  dependencies:
+    - c2bdistro_subtheme/paragraphs-base
+    - c2bdistro_subtheme/views.news
+
+# Views
+views.events:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.views.events.css: {}
+
+views.news:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.views.news.css: {}
+
+views.resources.page:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.views.resources.page.css: {}
+  dependencies:
+    - c2bdistro_subtheme/form
+
+views.search.page:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.views.search.page.css: {}
+  dependencies:
+    - c2bdistro_subtheme/form
+
+views.selector-cards:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.views.selector-cards.css: {}

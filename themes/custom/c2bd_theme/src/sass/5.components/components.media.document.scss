@@ -1,0 +1,210 @@
+/**
+ * @file
+ * Document Media Type Component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.layout-content {
+  background-color: $background-lightest;
+}
+.region.region-content {
+  max-inline-size: 139rem;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  background-color: $background-lightest;
+}
+
+.block-page-title-block {
+  max-inline-size: 139rem !important;
+  padding-block-start: 4.4rem !important;
+
+  .block-inner {
+    @include breakpoint(medium) {
+      margin-inline-start: 9.2rem;
+    }
+
+    h1.page-title {
+      max-inline-size: 110rem;
+      text-align: start;
+      text-decoration: none solid $body-font-color;
+      color: $body-font-color;
+      font-size: 2.2rem;
+      line-height: 1.25;
+
+      @include breakpoint(medium) {
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+article .media__content {
+  max-inline-size: 139rem;
+  margin: 0 auto;
+
+  .content-header {
+    display: flex;
+    align-items: center;
+    padding-block-start: 1.8rem;
+    padding-block-end: 2rem;
+    padding-inline: 0;
+
+    @include breakpoint(medium) {
+      margin-inline-start: 8.4rem;
+    }
+    .share-button {
+      margin-inline-end: 2.3rem;
+      padding: 0.4rem 0;
+    }
+    .content-header-text {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .created-time {
+        inline-size: 100%;
+        text-decoration: none solid $body-font-color;
+        color: $body-font-color;
+        font-family: $font-primary;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 3rem;
+
+        @include breakpoint(medium) {
+          inline-size: auto;
+        }
+      }
+
+      .created-time-pipe {
+        display: none;
+
+        @include breakpoint(medium) {
+          display: block;
+          padding: 0 0.7rem;
+          font-size: 1.8rem;
+        }
+      }
+      .category-link {
+        a {
+          text-decoration: none;
+          color: $color-secondary;
+          font-family: $font-primary;
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 3rem;
+        }
+      }
+    }
+  }
+
+  .content-body {
+    display: flex;
+    flex-wrap: wrap;
+    padding-block-start: 0.6rem;
+
+    @include breakpoint(medium) {
+      margin-inline-start: 9.2rem;
+    }
+    .content-body-img {
+      inline-size: 100%;
+
+      @include breakpoint(medium) {
+        inline-size: auto;
+      }
+
+      img {
+        inline-size: 100%;
+        margin-block-end: 4.4rem;
+
+        @include breakpoint(medium) {
+          inline-size: auto;
+        }
+      }
+    }
+    .content-body-text {
+      max-inline-size: 81.4rem;
+      padding-block-end: 8rem;
+      padding-inline-start: 0;
+      color: #000;
+      font-family: $font-primary;
+      font-size: 1.8rem;
+
+      @include breakpoint(medium) {
+        margin-inline-start: 3.3rem;
+      }
+
+      a.text-black {
+        color: $body-font-color;
+        font-family: $font-primary;
+        font-size: 1.8rem;
+      }
+    }
+
+    .content-body-text--field-lead {
+      margin-block-end: 2.4rem;
+    }
+
+    .content-body-text--field-body {
+      margin-block-end: 4rem;
+    }
+
+    .field.field--name-field-tags {
+      padding-block-start: 0;
+      padding-block-end: 4rem;
+      padding-inline-start: 0;
+      padding-inline-end: 4rem;
+
+      .field__label {
+        font-weight: 700;
+      }
+    }
+
+    .content-body-text--field-media-file {
+      inline-size: 18.7rem;
+      block-size: 4.7rem;
+      font-family: $font-primary;
+
+      a {
+        font-size: 1.6rem !important;
+      }
+
+      a:hover {
+        color: $color-lightest;
+      }
+    }
+
+    .field--name-field-custom-text {
+      padding: 3.4rem 0;
+      text-decoration: none solid $body-font-color;
+      color: $body-font-color;
+      font-family: $font-primary;
+      font-size: 1.6rem;
+      line-height: 3rem;
+
+      strong {
+        font-family: $font-primary;
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0;
+        font-family: $font-primary;
+        font-size: 1.6rem;
+      }
+      a {
+        text-decoration: underline solid $body-font-color;
+        color: $body-font-color;
+        font-family: $font-primary;
+        font-size: 1.6rem;
+        line-height: 3rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,350 @@
+<?php
+
+/**
+ * @file
+ * Main file for the C2bdistro module.
+ *
+ * @ingroup c2bdistro
+ */
+
+use Drupal\contact\MessageInterface;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\media\MediaInterface;
+use Drupal\file\Entity\File;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Mail\MailFormatHelper;
+use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function c2bdistro_core_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'media') {
+    // Allow uploading or removing the thumbnail image.
+    $fields['thumbnail']->setDisplayConfigurable('form', TRUE);
+    $settings = $fields['thumbnail']->getSettings();
+    // Add folder for media thumbnails.
+    $settings['file_directory'] = 'media_thumbnails/' . $settings['file_directory'];
+    $fields['thumbnail']->setSettings($settings);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ *
+ * Generate media thumbnail if there is plugin and actual thumbnail is general.
+ */
+function c2bdistro_core_media_presave(MediaInterface $entity) {
+  /** @var \Drupal\media_thumbnails\Plugin\MediaThumbnailManager $manager */
+  $manager = Drupal::service('plugin.manager.media_thumbnail');
+  if ($entity->bundle() === 'document' && $manager->hasPlugin($entity)) {
+    if (!$entity->isNew()) {
+      if (isset($entity->thumbnail->getValue()[0]['target_id'])) {
+        $file = File::load($entity->thumbnail->getValue()[0]['target_id']);
+        if (strstr($file->getFileUri(), 'public://media-icons/generic/')) {
+          $manager->updateThumbnail($entity);
+
+          // Re-add the thumbnail if pdf generation failed.
+          if (empty($entity->thumbnail->getValue())) {
+            $entity->set('thumbnail', $file);
+          }
+
+          // Set thumbnail alt.
+          _c2bdistro_core_set_thumbnail_alt($entity);
+        }
+      }
+    }
+    else {
+      $entity->thumbnail[0]->width = NULL;
+      $entity->thumbnail[0]->height = NULL;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for tour entities.
+ *
+ * Set media thumbnail's alt.
+ */
+function c2bdistro_core_media_insert($entity) {
+  if ($entity->bundle() === 'document') {
+    _c2bdistro_core_set_thumbnail_alt($entity);
+    $entity->save();
+  }
+}
+
+/**
+ * Set media thumbnail's alt from the thumbnail's file name.
+ */
+function _c2bdistro_core_set_thumbnail_alt($entity) {
+  if (isset($entity->thumbnail->getValue()[0]['target_id']) && empty($entity->thumbnail->alt)) {
+    $file = File::load($entity->thumbnail->getValue()[0]['target_id']);
+    $entity->thumbnail->alt = str_replace('.jpg', '', $file->getFilename());
+  }
+}
+
+/**
+ * Implements hook_media_source_info_alter().
+ *
+ * Replace the class for file plugin for keeping manually entered thumbnails.
+ */
+function c2bdistro_core_media_source_info_alter(array &$sources) {
+  $sources['file']['class'] = 'Drupal\c2bdistro_core\Plugin\media\Source\File';
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ *
+ * Invalidate some views cache tags before node page content type has saved.
+ */
+function c2bdistro_core_node_presave(EntityInterface $entity) {
+  if ($entity->bundle() === 'page') {
+
+    $tags = [];
+
+    foreach ($entity->field_paragraphs as $paragraph) {
+      $views_plugin = $paragraph->entity->field_view_list->plugin_id ?? '';
+      switch ($views_plugin) {
+        case 'views_block:documents-lister_block':
+          $tags[] = 'config:views.view.documents';
+          break;
+
+        case 'views_block:news-lister_block':
+          $tags[] = 'config:views.view.news';
+          break;
+
+        case 'views_block:events-lister_block':
+          $tags[] = 'config:views.view.events';
+          break;
+      }
+    }
+
+    \Drupal::service('cache_tags.invalidator')->invalidateTags($tags);
+
+  }
+
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ *
+ * Invalidate cache tags after hero block content type has modified.
+ */
+function c2bdistro_core_block_content_update(EntityInterface $entity) {
+  if ($entity->bundle() === 'hero') {
+    // @todo Check which content_block used on HP-Hero Block.
+    $tags = ['config:block.block.hphero'];
+    \Drupal::service('cache_tags.invalidator')->invalidateTags($tags);
+  }
+  if ($entity->bundle() === 'footer') {
+    // @todo Check which content_block used on Footer Block.
+    $tags = ['config:block.block.footerblockcontent'];
+    \Drupal::service('cache_tags.invalidator')->invalidateTags($tags);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide/show conditionally fields for Contact us form.
+ */
+function c2bdistro_core_form_contact_message_contact_us_form_alter(&$form, FormStateInterface $form_state) {
+  // Hide/show conditionally fields for Contact us form.
+  if (isset($form['field_contact_reason'])) {
+    $dependentFields = [
+      'field_upload_label',
+      'field_category',
+      'field_title',
+      'field_description',
+      'field_name_as_author',
+      'field_attachment',
+    ];
+
+    foreach ($dependentFields as $dependentField) {
+      if (isset($form[$dependentField])) {
+        $form[$dependentField]['#states'] = [
+          'visible' => [
+            'select[name="field_contact_reason"]' => ['value' => 'submit_document'],
+          ],
+        ];
+      }
+    }
+  }
+
+  // Create link to Terms & Conditions.
+  $form['field_terms_and_conditions']['widget']['value']['#title'] = t('I have read and accept the <a target="_blank" href="@url">Terms & Conditions</a>', [
+    '@url' => '/terms-and-conditions',
+  ]);
+}
+
+/**
+ * Order by weight.
+ */
+function _c2bdistro_core_compare_fields_weight($a, $b) {
+  return strnatcmp($a['weight'], $b['weight']);
+}
+
+/**
+ * Implements hook_mail_alter() for Contact us form.
+ */
+function c2bdistro_core_mail_alter(&$message) {
+
+  if ($message['id'] === 'contact_page_mail') {
+
+    $message['headers']['From'] = str_replace(',', ' ', $message['headers']['From']);
+
+    $contact_message = $message['params']['contact_message'];
+
+    if ($contact_message instanceof MessageInterface) {
+
+      $entityType = $contact_message->getEntityType()->id();
+      $bundle = $contact_message->bundle();
+
+      $viewModes = \Drupal::service('entity_display.repository')
+        ->getViewModeOptionsByBundle($entityType, $bundle);
+
+      $displayMode = array_key_exists('mail', $viewModes) ? 'mail' : 'default';
+
+      $display = \Drupal::entityTypeManager()
+        ->getStorage('entity_view_display')
+        ->load($entityType . '.' . $bundle . '.' . $displayMode);
+      $displayFields = $display->getComponents();
+
+      $data = [];
+      foreach ($displayFields as $key => $fieldConfig) {
+        $field = $contact_message->get($key);
+        $data['fields'][$key] = [
+          'field' => $field,
+          'weight' => $fieldConfig['weight'],
+        ];
+
+      }
+
+      uasort($data['fields'], '_c2bdistro_core_compare_fields_weight');
+
+      $body = '';
+      foreach ($data['fields'] as $fields) {
+        $field = $fields['field']->view();
+        $rendered = \Drupal::service('renderer')->renderPlain($field);
+        $rendered = MailFormatHelper::htmlToText($rendered);
+        $rendered = MailFormatHelper::wrapMail($rendered);
+        $rendered = strip_tags($rendered);
+        $rendered = str_replace("\n\n", "", $rendered);
+        $rendered = str_replace("  ", "", $rendered);
+        $new_element = strval($rendered) . "\n";
+
+        if (!empty($rendered)) {
+          $body = $body . $new_element;
+        }
+      }
+      $message['body'][1] = $body;
+    }
+  }
+}
+
+/**
+ * Invalidate cache tags.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity object.
+ */
+function _c2bdistro_core_invalidate_tags(EntityInterface $entity) {
+  $storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
+  $nodeFields = $storage->loadByProperties(['entity_type' => 'node']);
+  $mediaFields = $storage->loadByProperties(['entity_type' => 'media']);
+
+  if (in_array('media.field_tags', array_keys($mediaFields))) {
+    $query = \Drupal::entityQuery('media')
+      ->accessCheck(FALSE)
+      ->condition('field_tags', $entity->id());
+    $results = $query->execute();
+    if (!empty($results)) {
+      $references = Media::loadMultiple($results);
+      foreach ($references as $reference) {
+        Cache::invalidateTags($reference->getCacheTagsToInvalidate());
+      }
+    }
+  }
+
+  if (in_array('node.field_tags', array_keys($nodeFields))) {
+    $query = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->condition('field_tags', $entity->id());
+    $results = $query->execute();
+    if (!empty($results)) {
+      $references = Node::loadMultiple($results);
+      foreach ($references as $reference) {
+        Cache::invalidateTags($reference->getCacheTagsToInvalidate());
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete().
+ *
+ * Invalidate cache tags after taxonomy term has deleted.
+ */
+function c2bdistro_core_taxonomy_term_predelete(EntityInterface $entity) {
+  _c2bdistro_core_invalidate_tags($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ *
+ * Invalidate cache tags after taxonomy term has been updated.
+ */
+function c2bdistro_core_taxonomy_term_update(EntityInterface $entity) {
+  _c2bdistro_core_invalidate_tags($entity);
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Display the warning message if user has the right permission.
+ */
+function c2bdistro_core_preprocess_html(&$variable) {
+  $user = \Drupal::currentUser();
+  if (!$user->hasPermission('access site warning message')) {
+    return;
+  }
+
+  $variable['page_top']['c2b_warning'] = [
+    '#theme' => 'c2b_warning',
+    '#content' => [
+      '#markup' => t('Information security: Please, make sure that all content you publish is in line with the “Acceptable use of C2B resources” policy (<a href=":url" target="_blank">LINK</a>).', [
+        ':url' => 'https://www.google.com/'
+      ]),
+    ],
+    '#weight' => -100,
+  ];
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Define custom templates for Site warning message.
+ */
+function c2bdistro_core_theme() {
+  return [
+    'c2b_warning' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_openid_connect_userinfo_save().
+ *
+ * Set Password never expires for AD users.
+ */
+function c2bdistro_core_openid_connect_userinfo_save(UserInterface $account, array $context) {
+  $account->set('field_password_never_expires', 1);
+  $account->save();
+};

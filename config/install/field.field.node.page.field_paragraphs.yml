@@ -1,0 +1,112 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraphs
+    - node.type.page
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.cta
+    - paragraphs.paragraphs_type.link_boxes
+    - paragraphs.paragraphs_type.media
+    - paragraphs.paragraphs_type.partners
+    - paragraphs.paragraphs_type.small_boxes
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_media
+    - paragraphs.paragraphs_type.view
+  module:
+    - entity_reference_revisions
+id: node.page.field_paragraphs
+field_name: field_paragraphs
+entity_type: node
+bundle: page
+label: Paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+      link_boxes: link_boxes
+      cta: cta
+      media: media
+      partners: partners
+      small_boxes: small_boxes
+      text: text
+      text_media: text_media
+      view: view
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 3
+        enabled: true
+      cta:
+        weight: 25
+        enabled: true
+      document:
+        weight: 5
+        enabled: false
+      item:
+        weight: 4
+        enabled: false
+      link_box:
+        weight: 23
+        enabled: false
+      link_boxes:
+        weight: 24
+        enabled: true
+      media:
+        weight: 25
+        enabled: true
+      partner:
+        weight: 26
+        enabled: false
+      partners:
+        weight: 27
+        enabled: true
+      popup_text:
+        weight: 28
+        enabled: false
+      popup_wrapper:
+        weight: 29
+        enabled: false
+      quote_paragraph:
+        weight: 31
+        enabled: false
+      quotes:
+        weight: 30
+        enabled: false
+      small_box:
+        weight: 32
+        enabled: false
+      small_boxes:
+        weight: 33
+        enabled: true
+      tab_content:
+        weight: 37
+        enabled: false
+      tab_group:
+        weight: 38
+        enabled: false
+      tab_group_wrapper:
+        weight: 39
+        enabled: false
+      text:
+        weight: 34
+        enabled: true
+      text_media:
+        weight: 35
+        enabled: true
+      timeline:
+        weight: 36
+        enabled: false
+      timeline_wrapper:
+        weight: 37
+        enabled: false
+      view:
+        weight: 38
+        enabled: true
+field_type: entity_reference_revisions

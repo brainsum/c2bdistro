@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Primary Tabs Component
+ *
+ * @package: navigation
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+#block-tabs nav.tabs {
+  max-inline-size: 113.5rem;
+  margin-block-start: 2rem;
+  margin-block-end: 1rem;
+  margin-inline: auto;
+}

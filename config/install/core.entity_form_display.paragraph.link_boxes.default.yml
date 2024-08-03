@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.link_boxes.field_background_style
+    - field.field.paragraph.link_boxes.field_paragraphs
+    - paragraphs.paragraphs_type.link_boxes
+  module:
+    - paragraphs
+id: paragraph.link_boxes.default
+targetEntityType: paragraph
+bundle: link_boxes
+mode: default
+content:
+  field_background_style:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_paragraphs:
+    weight: 1
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
+  translation:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

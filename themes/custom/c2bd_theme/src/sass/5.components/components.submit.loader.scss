@@ -1,0 +1,59 @@
+/**
+ * @file
+ * Submit Loader Component
+ *
+ * @package: interactive
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+@keyframes lds-ripple {
+  0% {
+    inset-block-start: 3.6rem;
+    inset-inline-start: 3.6rem;
+    inline-size: 0;
+    block-size: 0;
+    opacity: 1;
+  }
+  100% {
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 7.2rem;
+    block-size: 7.2rem;
+    opacity: 0;
+  }
+}
+
+.custom-loader {
+  position: fixed;
+  z-index: 10000000;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
+
+  .loader {
+    position: relative;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    display: inline-block;
+    inline-size: 10rem;
+    block-size: 10rem;
+    transform: translate(-50%, -50%);
+
+    div {
+      position: absolute;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      opacity: 1;
+      border: 0.4rem solid $background-lightest;
+      border-radius: 50%;
+
+      &:nth-child(2) {
+        animation-delay: -0.5s;
+      }
+    }
+  }
+}

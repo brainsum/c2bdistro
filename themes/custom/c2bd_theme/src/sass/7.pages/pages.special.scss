@@ -1,0 +1,44 @@
+/**
+ * @file
+ * Common settings for special pages like "Page not found", "Access denied" and
+ * unformatted FE pages...
+ *
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.region.region-content {
+  @include width-1200;
+
+  padding-block: 8rem;
+  text-align: center;
+
+  .block-page-title-block {
+    margin-block-end: 4rem;
+  }
+}
+
+.path-user {
+  form {
+    .form-actions {
+      text-align: center;
+
+      input.form-submit {
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+.openid-connect-login-form {
+  text-align: center;
+
+  input.form-submit {
+    display: inline-flex;
+  }
+}

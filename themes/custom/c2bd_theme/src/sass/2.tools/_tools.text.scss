@@ -1,0 +1,147 @@
+/**
+ * @file
+ * Text Tool
+ *
+ * Text block related tools
+ *
+ * @author Krisztian Pinter <krisz@keeteean.com>
+ * @see 6.utilities/_utilities.text.scss for BEM based class named version
+ */
+
+/**
+ * Text-align Mixin
+ *
+ * @parameter {string} $align - Align value ex.: start.
+ * @parameter {string} $last - Optional, align value for justify aligned last line.
+ *
+ * Examples
+ *
+ * Simple text align.
+ *
+ * @example
+ *   .c-button {
+ *     @include text-align(center);
+ *   }
+ *
+ * Align last line of a justify text.
+ *
+ * @example
+ *   .section__lead {
+ *     @include text-align(justify, start);
+ *   }
+ */
+@mixin text-align($align, $last: null) {
+  @if $last not null {
+    text-align: $align !important; // for Edge
+    text-align-last: $last !important;
+    hyphens: auto;
+  } @else {
+    text-align: $align !important;
+  }
+}
+
+/**
+ * Text Overflow behaviors
+ *
+ * Text Ellipsis
+ *
+ * Overflow behavior: display an ellipsis to represent clipped text.
+ * Only works on single line text!
+ *
+ * Borrowed from Spectre.css
+ * @author Yan Zhu <picturepan2@hotmail.com>
+ * @author Krisztian Pinter <krisz@keeteean.com>
+ * @link https://picturepan2.github.io/spectre/utilities/text.html
+ *
+ * @example
+ *   .article__lead {
+ *     @include text-ellipsis;
+ *   }
+ */
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Text Clip
+ *
+ * Overflow behavior: truncate the text.
+ *
+ * Borrowed from Spectre.css
+ * @author Yan Zhu <picturepan2@hotmail.com>
+ * @author Krisztian Pinter <krisz@keeteean.com>
+ * @link https://picturepan2.github.io/spectre/utilities/text.html
+ *
+ * @example
+ *   .article__lead {
+ *     @include text-clip;
+ *   }
+ */
+@mixin text-clip {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+/**
+ * Text Break
+ *
+ * Text may be broken at arbitrary points.
+ *
+ * Part of Shake.sass, borrowed from Spectre.css.
+ * @author Yan Zhu <picturepan2@hotmail.com>
+ * @author Krisztian Pinter <krisz@keeteean.com>
+ * @link https://picturepan2.github.io/spectre/utilities/text.html
+ *
+ * @example
+ *   .article__body {
+ *     @include text-break;
+ *   }
+ */
+@mixin text-break {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@mixin link-hover {
+  transition: color, 0.2s;
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+@mixin block-title-simple {
+  text-decoration: none solid $color-primary;
+  color: $color-primary;
+  font-family: $font-secondary;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 4rem;
+
+  @include breakpoint(medium) {
+    font-size: 4rem;
+  }
+}
+
+@mixin text-small-bold {
+  text-decoration: none solid $color-primary;
+  color: $color-primary;
+  font-family: $font-secondary;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.9rem;
+}
+
+@mixin text-read-more {
+  text-decoration: none solid $color-primary;
+  color: $color-primary;
+  font-family: $font-secondary;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.9rem;
+}

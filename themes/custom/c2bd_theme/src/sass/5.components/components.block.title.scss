@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Title Block component
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.block-page-title-block {
+  max-inline-size: 119.2rem;
+  margin: 0 auto;
+  padding-block-start: 4rem;
+  padding-block-end: 0;
+  padding-inline: 0;
+
+  .block-inner {
+    h1.page-title {
+      text-align: center;
+      text-decoration: none solid $body-font-color;
+      color: $body-font-color;
+      font-family: $font-secondary;
+
+      .path-frontpage & {
+        font-size: 3rem;
+        line-height: 1;
+
+        @include breakpoint(medium) {
+          font-size: 4rem;
+          line-height: 1.225;
+        }
+      }
+    }
+  }
+}

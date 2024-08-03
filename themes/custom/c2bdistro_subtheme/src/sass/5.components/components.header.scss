@@ -1,0 +1,16 @@
+/**
+ * @file
+ * Site Header
+ *
+ * Header is not a component, it's a layout section. Therefore all header
+ * related styles, rules come here except what has an independent component, ie.
+ * Navigation component.
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+@import "../../../profiles/contrib/c2bdistro/themes/custom/c2bd_theme/src/sass/5.components/components.header";

@@ -1,0 +1,475 @@
+/**
+ * @file
+ * Navigation Component
+ *
+ * Main navigation menu of site.
+ *
+ * @package: navigation
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.social-block {
+  display: flex;
+  align-items: center;
+  margin-inline-start: auto;
+
+  .block-dropdown-language + & {
+    @include breakpoint(medium) {
+      margin-inline-start: 0;
+    }
+  }
+
+  img {
+    inline-size: 2.4rem;
+    block-size: 2.4rem;
+
+    @include breakpoint(medium down) {
+      margin-inline-end: 1.5rem;
+    }
+  }
+
+  .bordered-button {
+    padding: 1.4rem 5.1rem;
+  }
+}
+
+.mobile-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+}
+
+.menu--main {
+  > .menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(medium down) {
+      overflow: scroll;
+      align-items: center;
+      block-size: 100vh;
+    }
+
+    @include breakpoint(tablet) {
+      @include flex-direction(row);
+    }
+
+    > a {
+      @include breakpoint(medium down) {
+        display: none;
+      }
+    }
+
+    > .menu-item {
+      inline-size: auto;
+
+      @include breakpoint(medium down) {
+        inline-size: 100%;
+        margin-block-end: 2rem;
+        text-align: center;
+      }
+
+      @include breakpoint(tablet) {
+        display: flex;
+        flex: 1 1 0;
+        align-items: center;
+        justify-content: center;
+        margin-inline-end: 0.2rem;
+        background-color: $background-lightest;
+
+        a,
+        span {
+          text-align: center;
+        }
+
+        &:hover {
+          &,
+          span,
+          a {
+            transition: 0.2s;
+            color: $background-lightest;
+            background-color: $body-font-color;
+          }
+        }
+      }
+
+      a,
+      span {
+        transition: color, 0.2s;
+
+        &:hover {
+          @include breakpoint(medium) {
+            transition: 0.2s;
+            color: $background-lightest;
+            background-color: $body-font-color;
+          }
+        }
+      }
+
+      > span,
+      > a {
+        display: block;
+        padding: 1.5rem 0;
+        cursor: pointer;
+        transition: all 0.5s;
+        font-weight: 700;
+        line-height: 2rem;
+
+        @include breakpoint(medium down) {
+          display: inline-block;
+          text-align: center;
+          font-size: 1.8rem;
+        }
+
+        @include breakpoint(medium) {
+          padding: 0;
+          color: $body-font-color;
+          background-color: $background-lightest;
+        }
+
+        @include breakpoint(tablet) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          inline-size: 100%;
+          block-size: 100%;
+          padding: 2.2rem 3rem;
+          text-transform: uppercase;
+          background-color: $background-lightest;
+        }
+      }
+
+      &.menu-item--active-trail {
+        color: $color-lightest;
+        background-color: $body-font-color;
+
+        > span,
+        > a {
+          color: $background-lightest;
+          background-color: $body-font-color;
+        }
+      }
+    }
+
+    .menu-item--expanded {
+      position: relative;
+
+      .dropdown-arrow {
+        display: inline-block;
+        margin-inline-start: 1rem;
+        transition: 0.5s;
+        transform: rotate(90deg);
+
+        @include breakpoint(medium) {
+          display: none;
+        }
+
+        &__icon {
+          inline-size: 1rem;
+          block-size: 1rem;
+          pointer-events: none;
+        }
+      }
+
+      &.opened {
+        background-color: $body-font-color;
+
+        .menu-link {
+          @include breakpoint(medium down) {
+            color: $background-lightest;
+          }
+        }
+
+        .dropdown-arrow {
+          transform: rotate(270deg);
+
+          &__icon {
+            fill: $background-lightest;
+          }
+        }
+      }
+
+      > .menu {
+        display: none;
+        padding-block-start: 0;
+        padding-block-end: 1rem;
+        padding-inline: 1.5rem;
+        transition: 0.2s;
+        color: $background-lightest;
+        background-color: $body-font-color;
+
+        @include breakpoint(tablet) {
+          position: absolute;
+          inset-block-start: 5.65rem;
+          padding: 1.5rem;
+        }
+
+        .menu-item {
+          @include breakpoint(medium down) {
+            text-align: center;
+          }
+
+          &--active-trail {
+            @include breakpoint(tablet) {
+              span:hover {
+                color: $background-lightest;
+              }
+
+              a {
+                color: $background-lightest;
+                font-weight: 400;
+              }
+            }
+            a {
+              color: $background-lightest;
+            }
+          }
+
+          &:last-child a {
+            padding: 0;
+          }
+
+          a {
+            display: inline-block;
+            padding-block-start: 0;
+            padding-block-end: 1rem;
+            padding-inline: 0;
+            text-align: center;
+            white-space: pre-wrap;
+            color: $background-lightest;
+            line-height: 2rem;
+
+            @include breakpoint(medium) {
+              text-align: start;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        > .menu {
+          inline-size: 100%;
+
+          @include breakpoint(medium) {
+            display: block !important;
+          }
+        }
+      }
+
+      &.opened {
+        > .menu {
+          display: block;
+          inline-size: 100%;
+          transition: 0.2s;
+
+          @include breakpoint(medium) {
+            display: none;
+          }
+        }
+      }
+
+      &.menu-item--active-trail > span:hover {
+        @include breakpoint(tablet) {
+          color: $background-lightest;
+        }
+      }
+    }
+  }
+
+  .site-search {
+    z-index: 1;
+    display: block;
+    padding-block-start: 1.1rem;
+    padding-block-end: 0;
+    padding-inline: 1.1rem;
+    cursor: pointer;
+    transition: background-color, 0.2s;
+
+    @include breakpoint(medium down) {
+      display: none;
+    }
+
+    svg {
+      transition: fill, 0.2s;
+      fill: $body-font-color;
+    }
+
+    &.active,
+    &:hover {
+      background-color: $color-secondary;
+
+      svg {
+        fill: $background-lightest;
+      }
+    }
+  }
+
+  .close-search {
+    position: absolute;
+    z-index: -1;
+    inset-inline-end: 0;
+    display: block;
+    padding-block-start: 1.1rem;
+    padding-block-end: 0;
+    padding-inline: 1.1rem;
+
+    svg {
+      fill: rgba($body-font-color, 0);
+    }
+
+    &.active {
+      z-index: 99;
+      inset-block-start: 6rem;
+      cursor: pointer;
+
+      svg {
+        transition: fill, 0.2s;
+        fill: rgba($body-font-color, 0.3);
+      }
+    }
+
+    &:hover {
+      svg {
+        fill: rgba($body-font-color, 0.6);
+      }
+    }
+  }
+}
+
+li.menu-item.menu-item--expanded.opened span {
+  transition: 0s;
+  color: $background-lightest;
+  background-color: $body-font-color;
+
+  @include breakpoint(medium) {
+    color: $body-font-color;
+    background-color: $background-lightest;
+  }
+}
+
+.menu--footer {
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-inline-size: 39.5rem;
+
+    @include breakpoint(medium) {
+      flex-flow: row wrap;
+    }
+
+    .menu-item {
+      inline-size: 100%;
+      max-inline-size: 13.6rem;
+      margin-block-end: 0.5rem;
+
+      &:nth-child(5) {
+        @include breakpoint(mobile down) {
+          margin-block-end: 5.3rem;
+        }
+      }
+
+      a {
+        @include link-hover;
+
+        font-family: $font-primary;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.block-about-branches {
+  .block-inner {
+    .menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include breakpoint(tablet) {
+        flex-direction: row;
+      }
+
+      .menu-item {
+        inline-size: 100%;
+        margin-block-end: 4.4rem;
+        margin-inline: 0;
+        margin-inline-start: 0;
+        text-align: center;
+
+        @include breakpoint(tablet) {
+          max-inline-size: 20%;
+          margin: 0 1.2rem;
+        }
+
+        a {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          transition: all, 0.2s;
+          font-weight: 700;
+
+          &:hover {
+            color: $color-secondary;
+          }
+
+          .icon-holder {
+            block-size: 7.5rem;
+            margin-block-end: 1rem;
+
+            img {
+              inline-size: 7rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.close-menu {
+  padding: 2rem;
+  text-align: end;
+}
+
+nav.navigation.menu--main {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 100%;
+  inset-inline-end: 0;
+  display: block !important;
+  overflow: hidden;
+  transition: 0.5s;
+  background-color: $color-white;
+
+  @include breakpoint(tablet) {
+    overflow: unset;
+    background-color: transparent;
+  }
+}
+
+nav.navigation.menu--main.open {
+  inset-inline-start: 0;
+}
+
+@include breakpoint(tablet) {
+  nav.navigation.menu--main {
+    position: initial !important;
+  }
+
+  .close-menu {
+    display: none;
+  }
+}

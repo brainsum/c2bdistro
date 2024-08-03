@@ -1,0 +1,24 @@
+.view-implementations {
+  max-inline-size: 126rem;
+  margin: 0 auto;
+
+  .view-content {
+    margin-block-start: 5rem;
+
+    a {
+      position: relative;
+      padding-inline-start: 2rem;
+      text-decoration: underline;
+
+      &::before {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        display: block;
+        inline-size: 2rem;
+        block-size: 2rem;
+        content: ">";
+      }
+    }
+  }
+}

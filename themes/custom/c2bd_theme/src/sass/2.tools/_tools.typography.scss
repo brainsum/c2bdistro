@@ -1,0 +1,113 @@
+/**
+ * @file
+ * Typography Tool
+ *
+ * Inline typography related mixins.
+ */
+
+/**
+ * Font Antialiasing
+ *
+ * Makes font thickness to look the same in Firefox and Webkit.
+ *
+ * @example
+ *   h1 {
+ *     @include font-smooth;
+ *   }
+ */
+
+@mixin font-smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin bordered-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 4.8rem;
+  padding: 0 2.1rem;
+  transition: all, 0.2s;
+  text-decoration: none !important;
+  border: 0.2rem solid $color-secondary;
+  background-color: transparent;
+  font-family: $font-secondary !important;
+  font-size: 1.7rem;
+  font-weight: 700;
+
+  @include breakpoint(medium) {
+    padding: 0 5.1rem;
+  }
+
+  &:hover {
+    color: $color-lightest;
+    border-color: $body-font-color;
+    background-color: $body-font-color;
+  }
+}
+
+@mixin bordered-button-blue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 4.8rem;
+  padding: 0 2.1rem;
+  transition: all, 0.2s;
+  text-decoration: none !important;
+  color: $color-lightest;
+  border: 0.2rem solid $color-secondary;
+  background-color: transparent;
+  font-family: $font-secondary !important;
+  font-size: 1.6rem;
+  font-weight: 600;
+
+  @include breakpoint(medium) {
+    padding: 0 5.1rem;
+  }
+
+  &:hover {
+    color: $color-lightest;
+    background-color: $color-secondary;
+  }
+}
+
+@mixin bordered-button-small {
+  padding: 0.8rem 2rem;
+  text-decoration: none !important;
+  border: 0.2rem solid $color-secondary;
+  font-family: $font-secondary !important;
+  font-size: 1.7rem;
+  font-weight: 700;
+
+  @include breakpoint(medium) {
+    padding: 0.8rem 3.5rem;
+  }
+
+  &:hover {
+    color: $color-lightest;
+    border-color: $body-font-color;
+    background-color: $body-font-color;
+  }
+}
+
+@mixin block-title {
+  margin-block-start: -2.3rem;
+  margin-inline-start: 1.5rem;
+  padding: 0.2rem 0;
+  color: $color-lightest;
+  background-color: $body-font-color;
+  box-decoration-break: clone;
+  box-shadow:
+    2.6rem 0 0 $body-font-color,
+    -1.9rem 0 0 $body-font-color;
+  font-family: $font-secondary !important;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 5rem;
+}
+
+@mixin font-open-18 {
+  font-family: $font-primary;
+  font-size: 1.8rem;
+  line-height: 1.66;
+}

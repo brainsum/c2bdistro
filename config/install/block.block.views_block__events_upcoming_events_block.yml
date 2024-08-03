@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.events
+  module:
+    - system
+    - views
+  theme:
+    - c2bd_theme
+id: views_block__events_upcoming_events_block
+theme: c2bd_theme
+region: content
+weight: -3
+provider: null
+plugin: 'views_block:events-upcoming_events_block'
+settings:
+  id: 'views_block:events-upcoming_events_block'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /events

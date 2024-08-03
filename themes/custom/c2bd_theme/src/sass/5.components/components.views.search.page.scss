@@ -1,0 +1,188 @@
+/**
+ * @file
+ * Search component
+ *
+ * Site search, a special form component.
+ *
+ * @package: interactive
+ * @see more 5.components/components.form
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.block-page-title-block {
+  .block-inner {
+    @include width-1390;
+
+    margin-block-start: 4rem;
+    margin-block-end: 4.5rem;
+
+    @include breakpoint(medium) {
+      margin-block-start: 6rem;
+      margin-block-end: 6.5rem;
+    }
+
+    .page-title {
+      font-size: 4rem;
+      line-height: 1.16;
+    }
+  }
+}
+
+.views-exposed-form {
+  .view-search & {
+    @include width-1390;
+
+    @include breakpoint(large) {
+      padding-inline: 0;
+    }
+
+    .form--inline {
+      display: flex;
+      flex-flow: row;
+
+      @include breakpoint(mobile) {
+        flex-wrap: nowrap;
+      }
+    }
+
+    .form-item-text {
+      inline-size: 100%;
+
+      @include breakpoint(mobile) {
+        max-inline-size: 40rem;
+      }
+
+      @include breakpoint(tablet) {
+        inline-size: 50%;
+      }
+
+      @include breakpoint(large) {
+        inline-size: 30%;
+      }
+    }
+
+    .form-text {
+      block-size: auto;
+      padding: 1.35rem 1em;
+      border: 0.1rem solid $color-grey-dark;
+      background: $background-lightest;
+    }
+
+    .form-actions {
+      inline-size: 100%;
+      margin-block-start: 3rem;
+
+      @include breakpoint(mobile) {
+        inline-size: auto;
+        margin-block-start: 0;
+        margin-inline-start: 1.3rem;
+      }
+    }
+
+    input.form-submit {
+      @include breakpoint(mobile down) {
+        inline-size: 100%;
+      }
+    }
+  }
+}
+
+.view-filters {
+  .view-search & {
+    padding-block-start: 12rem;
+    padding-block-end: 8rem;
+  }
+}
+
+.view-content {
+  .view-search &,
+  .view-taxonomy-term & {
+    @include width-1390;
+
+    margin-block-start: -2rem;
+
+    @include breakpoint(large) {
+      padding: 0;
+    }
+  }
+}
+
+.node,
+.media {
+  .view-search &,
+  .view-taxonomy-term & {
+    padding: 3rem;
+    color: $body-font-color;
+    background: $background-lightest;
+
+    @include breakpoint(mobile) {
+      padding: 3rem 5rem;
+    }
+
+    @include breakpoint(medium) {
+      padding: 5rem 10rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+
+      @include breakpoint(medium) {
+        font-size: 3rem;
+      }
+
+      a {
+        color: #000;
+      }
+    }
+
+    .content-header,
+    .content-header-text {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .content-header {
+      margin-block-start: 1rem;
+    }
+
+    .content-header,
+    .field--name-field-location {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .created-time-pipe {
+      margin: 0 0.25em;
+    }
+
+    .field--name-field-location {
+      margin-block-start: 1.5rem;
+
+      img {
+        margin-block-start: -0.2rem;
+        margin-inline-start: -0.4rem;
+      }
+    }
+
+    .field--name-field-lead {
+      margin-block-start: 1.5rem;
+      font-family: $font-primary;
+    }
+  }
+}
+
+.views-row {
+  .view-search &,
+  .view-taxonomy-term & {
+    padding: 2rem 0;
+  }
+}

@@ -1,0 +1,65 @@
+/**
+ * @file
+ * Share Button Component
+ *
+ * Borrowed.
+ *
+ * @package: interactive
+ */
+
+/**
+ * Imports
+ *
+ * First import our custom variables and mixins
+ */
+@import "../index";
+
+.share-button--links li {
+  margin: 1.5rem auto !important;
+  list-style: none;
+}
+
+.share-button {
+  position: relative;
+  display: inline-block;
+  inline-size: 5rem;
+  padding: 0.5rem 0;
+  text-align: center;
+  background: none;
+}
+
+.share-button--links {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  inline-size: 100%;
+  max-block-size: 0;
+  transition: 0.2s;
+  background-color: $color-shade2;
+
+  ul {
+    margin: auto;
+  }
+}
+
+img.share-button--icon {
+  display: block;
+  inline-size: 3.2rem;
+  margin: auto;
+}
+
+.share-button--button {
+  inline-size: 5rem;
+  block-size: 5rem;
+  cursor: pointer;
+  border: 0;
+  background: none;
+
+  &:hover img {
+    filter: invert(77%) sepia(16%) saturate(4642%) hue-rotate(141deg) brightness(97%) contrast(79%);
+  }
+}
+
+.share-links-open {
+  max-block-size: max-content;
+}

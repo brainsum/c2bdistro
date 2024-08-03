@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.simple
+    - user.role.editor
+    - user.role.manager
+    - user.role.user_manager
+    - user.role.contributor
+  module:
+    - filter
+    - openid_connect
+    - role_delegation
+    - system
+    - toolbar
+id: user_manager
+label: 'User Manager'
+weight: -9
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer users'
+  - 'assign contributor role'
+  - 'assign editor role'
+  - 'assign manager role'
+  - 'assign user_manager role'
+  - 'openid connect set own password'
+  - 'use text format simple'
+  - 'view the administration theme'

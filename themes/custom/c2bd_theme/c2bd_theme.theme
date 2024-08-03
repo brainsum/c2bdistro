@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the c2bd_theme theme.
+ */
+
+use Drupal\block_content\BlockContentInterface;
+
+/**
+ * Implements hook_preprocess_page() for PAGE document templates.
+ */
+function c2bd_theme_preprocess_page(array &$variables) {
+
+  $current_route = \Drupal::routeMatch();
+  $route_name = $current_route->getRouteName();
+
+  if (($route_name === 'entity.contact_form.canonical') || ($route_name === 'contact.site_page')) {
+    $variables['#attached']['library'][] = 'c2bd_theme/form.contact';
+
+    // Temporary removed.
+    // ($variables['#attached']['library'][] = 'c2bd_theme/submit.loader';)
+  }
+
+  $specialRoutes = [
+    'system.404',
+    'system.403',
+    'user.login',
+    'user.register',
+    'user.pass',
+    'entity.user.canonical',
+  ];
+  if (in_array($route_name, $specialRoutes)) {
+    $variables['#attached']['library'][] = 'c2bd_theme/pages.special';
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ *
+ * Provide new variables in region document twig templates.
+ */
+function c2bd_theme_preprocess_region(&$variables) {
+  // Store theme's path in a variable to access it from region Twig templates.
+  $variables['c2bd_theme_path'] = \Drupal::service('extension.list.theme')->getPath('c2bd_theme');
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function c2bd_theme_preprocess_block(&$variables) {
+
+  $block_content = $variables['elements']['content']['#block_content'] ?? '';
+  if ($block_content instanceof BlockContentInterface) {
+    $block_type = $block_content->bundle();
+    $variables['attributes']['class'][] = $block_type . '-block-type';
+  }
+  $blockId = $variables['elements']['#id'] ?? '';
+
+  if ($variables['derivative_plugin_id'] == 'search-resources') {
+    $variables['#cache']['max-age'] = 0;
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function c2bd_theme_preprocess(&$vars, $hook) {
+  $vars['share_url'] = \Drupal::request()->getSchemeAndHttpHost() . \Drupal::request()->getPathInfo();
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ */
+function c2bd_theme_preprocess_paragraph__cta(&$variables) {
+  $variables['#attached']['library'][] = 'c2bd_theme/paragraph.cta';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add custom suggestion based on block_content type.
+ */
+function c2bd_theme_theme_suggestions_block_alter(&$suggestions, $variables) {
+  $content = $variables['elements']['content'];
+  if (isset($content['#block_content']) && $content['#block_content'] instanceof BlockContentInterface) {
+    $block_type_suggestions[] = 'block__block_type__' . $content['#block_content']->bundle();
+
+    // Because block__block_content exists twice in $suggestions,
+    // the suggestion arrays are reversed for further processing.
+    $suggestions_rev = array_reverse($suggestions);
+    $block_type_suggestions = array_reverse($block_type_suggestions);
+
+    // Insert the block type suggestions between
+    // block__block_content and the block instance-specific suggestions.
+    $index = array_search('block__block_content', $suggestions_rev);
+    if (is_numeric($index)) {
+      array_splice($suggestions_rev, $index, 0, $block_type_suggestions);
+      $suggestions = array_reverse($suggestions_rev);
+    }
+    // If block__block_content isn't present as a suggestion.
+    else {
+      $suggestions_rev = array_merge($suggestions_rev, $block_type_suggestions);
+      $suggestions = array_reverse($suggestions_rev);
+    }
+  }
+}
