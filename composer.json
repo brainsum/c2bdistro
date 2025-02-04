@@ -85,7 +85,7 @@
         "patches": {
             "drupal/core": {
                 "Keep manually inserted alt": "web/profiles/contrib/c2bdistro/patches/media-keep-manually-inserted-alt.patch",
-                "Menu Link Edit form is not saving Weight and Expanded values properly for default links": "patches/3494194-menu-link-edit-form-is-not-saving-mr-10569.patch"
+                "Menu Link Edit form is not saving Weight and Expanded values properly for default links": "web/profiles/contrib/c2bdistro/patches/3494194-menu-link-edit-form-is-not-saving-mr-10569.patch"
             },
             "drupal/classy_paragraphs": {
                 "Choose and order selectable styles": "https://www.drupal.org/files/issues/2021-02-23/choose_and_order-2830403-44.patch"
