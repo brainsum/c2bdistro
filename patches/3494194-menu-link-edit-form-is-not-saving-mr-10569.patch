@@ -1,0 +1,116 @@
+From bef207dde25b83306101a35a96e10bcb35d11f87 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Pablo=20L=C3=B3pez=20//=20plopesc?= <plopesc@gmail.com>
+Date: Mon, 16 Dec 2024 11:27:29 +0100
+Subject: [PATCH 1/2] Issue #3494194: Menu Edit form is not saving properly
+ overridden values properly
+
+---
+ core/themes/claro/claro.theme | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/core/themes/claro/claro.theme b/core/themes/claro/claro.theme
+index 6015fdf976bb..5d919fccdaab 100644
+--- a/core/themes/claro/claro.theme
++++ b/core/themes/claro/claro.theme
+@@ -707,7 +707,7 @@ function claro_form_menu_link_content_form_alter(&$form, FormStateInterface $for
+     '#group' => 'advanced',
+     '#title' => t('Display settings'),
+     '#attributes' => ['class' => ['entity-meta__options']],
+-    '#tree' => TRUE,
++    '#tree' => FALSE,
+     '#accordion' => TRUE,
+   ];
+   if (!empty($form['weight'])) {
+@@ -725,7 +725,7 @@ function claro_form_menu_link_content_form_alter(&$form, FormStateInterface $for
+       '#group' => 'advanced',
+       '#title' => t('Description'),
+       '#attributes' => ['class' => ['entity-meta__description']],
+-      '#tree' => TRUE,
++      '#tree' => FALSE,
+       '#accordion' => TRUE,
+       'description' => $form['description'],
+     ];
+-- 
+GitLab
+
+
+From 62019ae5a75c3a0579af501a8c4ec177cbbc9c65 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Pablo=20L=C3=B3pez=20//=20plopesc?= <plopesc@gmail.com>
+Date: Mon, 16 Dec 2024 12:00:57 +0100
+Subject: [PATCH 2/2] Issue #3494194: Test coverage
+
+---
+ .../Functional/MenuLinkDefaultFormTest.php    | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 core/themes/claro/tests/src/Functional/MenuLinkDefaultFormTest.php
+
+diff --git a/core/themes/claro/tests/src/Functional/MenuLinkDefaultFormTest.php b/core/themes/claro/tests/src/Functional/MenuLinkDefaultFormTest.php
+new file mode 100644
+index 000000000000..e48388f59fd9
+--- /dev/null
++++ b/core/themes/claro/tests/src/Functional/MenuLinkDefaultFormTest.php
+@@ -0,0 +1,61 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\claro\Functional;
++
++use Drupal\Tests\BrowserTestBase;
++
++/**
++ * Tests the MenuLinkDefaultForm customizations.
++ *
++ * @group claro
++ */
++class MenuLinkDefaultFormTest extends BrowserTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected $defaultTheme = 'claro';
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = ['menu_ui'];
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    $this->drupalLogin($this->drupalCreateUser(['administer menu']));
++  }
++
++  /**
++   * Tests the MenuLinkDefaultForm customizations.
++   */
++  public function testMenuLinkDefaultFormCustomizations(): void {
++    $this->drupalGet('/admin/structure/menu/link/system.admin/edit');
++    // Assert the Display Settings details element is placed in the sidebar.
++    $this->assertSession()->elementTextEquals('css', '.layout-region--secondary #edit-advanced #edit-menu-link-display-settings summary', 'Display settings');
++    // Assert tht form elements are in the expected location.
++    $this->assertSession()->elementExists('css', '#edit-menu-link-display-settings .form-item--weight');
++    $this->assertSession()->elementExists('css', '#edit-menu-link-display-settings .form-item--expanded');
++
++    // Assert that menu link original values are present.
++    $this->assertSession()->fieldValueEquals('weight', 9);
++    $this->assertSession()->checkboxNotChecked('Show as expanded');
++
++    $this->submitForm([
++      'weight' => 10,
++      'expanded' => TRUE,
++    ], 'Save');
++
++    // Assert that menu link values are updated.
++    $this->drupalGet('/admin/structure/menu/link/system.admin/edit');
++    $this->assertSession()->fieldValueEquals('weight', 10);
++    $this->assertSession()->checkboxChecked('Show as expanded');
++  }
++
++}
+-- 
+GitLab
+
