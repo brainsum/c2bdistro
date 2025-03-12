@@ -12,7 +12,6 @@ dependencies:
     - node.type.page
     - workflows.workflow.editorial
   module:
-    - c2bdistro_core
     - contact
     - content_moderation
     - content_translation
@@ -28,7 +27,6 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access media overview'
-  - 'access site warning message'
   - 'access site-wide contact form'
   - 'access toolbar'
   - 'create document media'
