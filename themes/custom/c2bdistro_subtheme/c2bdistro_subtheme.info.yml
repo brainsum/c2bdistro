@@ -3,7 +3,7 @@ type: theme
 base theme: c2bd_theme
 description: A flexible theme with a responsive, mobile-first layout.
 package: Custom
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 libraries-override:
   c2bd_theme/global-styling: c2bdistro_subtheme/global-styling
   c2bd_theme/block.footer: c2bdistro_subtheme/block.footer
