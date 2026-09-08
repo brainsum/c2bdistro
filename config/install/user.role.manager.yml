@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.hero
     - filter.format.simple
     - taxonomy.vocabulary.category
     - taxonomy.vocabulary.country
@@ -9,7 +10,7 @@ dependencies:
     - taxonomy.vocabulary.organization
     - taxonomy.vocabulary.tags
   module:
-    - block_content_permissions
+    - block_content
     - contact
     - filter
     - node
@@ -21,6 +22,7 @@ label: Manager
 weight: -8
 is_admin: null
 permissions:
+  - 'access block library'
   - 'access content overview'
   - 'access site-wide contact form'
   - 'access taxonomy overview'
@@ -35,12 +37,11 @@ permissions:
   - 'delete terms in location'
   - 'delete terms in organization'
   - 'delete terms in tags'
+  - 'edit any hero block content'
   - 'edit terms in category'
   - 'edit terms in country'
   - 'edit terms in location'
   - 'edit terms in organization'
   - 'edit terms in tags'
-  - 'update any hero block content'
   - 'use text format simple'
-  - 'view restricted block content'
   - 'view the administration theme'
