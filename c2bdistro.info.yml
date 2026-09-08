@@ -3,8 +3,8 @@ type: profile
 description: 'Distribution for quickly starting a new c2bd system with Drupal.'
 version: 1.0.12
 
-core_version_requirement: ^9.1 || ^10
-php: 7.3
+core_version_requirement: ^9.1 || ^10 || ^11
+php: 8.3
 
 distribution:
   name: 'C2B distro profile'
