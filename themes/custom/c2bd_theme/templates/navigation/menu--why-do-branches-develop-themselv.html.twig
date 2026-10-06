@@ -34,15 +34,13 @@
       <ul class="menu">
     {% endif %}
     {% for item in items %}
-      {%
-        set classes = [
-          'menu-item',
-          item.is_expanded ? 'menu-item--expanded',
-          item.is_collapsed ? 'menu-item--collapsed',
-          item.in_active_trail ? 'menu-item--active-trail',
-          item.title|clean_class,
-        ]
-      %}
+      {% set classes = [
+        'menu-item',
+        item.is_expanded ? 'menu-item--expanded',
+        item.is_collapsed ? 'menu-item--collapsed',
+        item.in_active_trail ? 'menu-item--active-trail',
+        item.title|clean_class,
+      ] %}
       <li{{ item.attributes.addClass(classes) }}>
         <a href="{{ item.url }}">
           <span class="icon-holder">

@@ -25,14 +25,12 @@
  * @see template_preprocess_block()
  */
 #}
-{%
-  set classes = [
-  'block',
-  'block-' ~ configuration.provider|clean_class,
-  'block-' ~ plugin_id|clean_class,
-  'block-holder'
-]
-%}
+{% set classes = [
+'block',
+'block-' ~ configuration.provider|clean_class,
+'block-' ~ plugin_id|clean_class,
+'block-holder'
+] %}
 <div{{ attributes.addClass(classes) }}>
   <div class="block-inner">
     {{ title_prefix }}

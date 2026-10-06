@@ -13,23 +13,21 @@
  */
 #}
 
-{%
-  set classes = [
-    'media',
-    'media--type-' ~ media.bundle()|clean_class,
-    not media.isPublished() ? 'media--unpublished',
-    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'media',
+  'media--type-' ~ media.bundle()|clean_class,
+  not media.isPublished() ? 'media--unpublished',
+  view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
+] %}
 <article{{ attributes.addClass(classes)|without('role', 'lang', 'dir') }}>
   {{ title_suffix.contextual_links }}
   {% if content %}
   {% if content.field_highlighted.0['#markup'] == 'On' %}
-    {% set highClass = 'highlighted' %}
+    {% set high_class = 'highlighted' %}
   {% else %}
-    {% set highClass = '' %}
+    {% set high_class = '' %}
   {% endif %}
-    <div class="media-wrapper {{ highClass }}">
+    <div class="media-wrapper {{ high_class }}">
       <div class="left thumbnail">
         {{ content.thumbnail }}
       </div>
@@ -38,12 +36,12 @@
           {{ content.name }}
         </div>
         <div class="subtitle">
-          {% set catID = content.field_category.0['#options'].entity.id %}
-          {% set catUrl = path('view.search.resources', {'category': catID}) %}
-          {% set catTitle = content.field_category.0['#options'].entity.name.value %}
+          {% set cat_id = content.field_category.0['#options'].entity.id %}
+          {% set cat_url = path('view.search.resources', {'category': cat_id}) %}
+          {% set cat_title = content.field_category.0['#options'].entity.name.value %}
           <span class="created"> {{ content.created }} {% if content.field_category %}|{% endif %} </span>
           <span class="category">
-            <a href="{{ catUrl }}" class="category-link">{{ catTitle }}</a>
+            <a href="{{ cat_url }}" class="category-link">{{ cat_title }}</a>
           </span>
         </div>
         {% set text = content.field_lead.0['#context'].value %}

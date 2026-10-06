@@ -71,14 +71,14 @@
     <div class="footer-block-type-footer-content">
       <div class="footer-block-type-footer-content-item">
         {% if logged_in %}
-          {% set loginUrl = path('entity.user.canonical', {'user' : user.id}) %}
-          {% set loginText = 'My Account' %}
+          {% set login_url = path('entity.user.canonical', {'user': user.id}) %}
+          {% set login_text = 'My Account' %}
         {% else %}
-          {% set loginUrl = path('user.login') %}
-          {% set loginText = 'Login' %}
+          {% set login_url = path('user.login') %}
+          {% set login_text = 'Login' %}
         {% endif %}
 
-        <p>© {{ "now"|date("Y") }} - C2B Distro | <a href="{{ loginUrl }}">{{ loginText|t }}</a></p>
+        <p>© {{ "now"|date("Y") }} - C2B Distro | <a href="{{ login_url }}">{{ login_text|t }}</a></p>
       </div>
       <div class="footer-block-type-footer-content-item">
         <p><a href="/legal-disclaimer">Legal Disclaimer</a> |  <a href="/fraud-notice">Fraud Notice</a></p>

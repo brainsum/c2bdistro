@@ -70,16 +70,14 @@
  *   in different view modes.
  */
 #}
-{%
-  set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+] %}
 
 <article{{ attributes.addClass(classes)|without('role', 'lang', 'dir') }}>
   <div{{ content_attributes.addClass('node__content') }}>
@@ -88,6 +86,6 @@
     <div class="content-title">
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </div>
-    {{ content.links}}
+    {{ content.links }}
   </div>
 </article>

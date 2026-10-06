@@ -41,18 +41,16 @@
 
 {{ attach_library('c2bd_theme/paragraph.timeline') }}
 
-{%
-  set classes = [
-    'paragraph',
-    'paragraph--outer',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished',
-    content.field_left_popup[0] ? 'left-popup',
-    content.field_middle_popup[0] ? 'middle-popup',
-    content.field_right_popup[0] ? 'right-popup',
-  ]
-%}
+{% set classes = [
+  'paragraph',
+  'paragraph--outer',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished',
+  content.field_left_popup[0] ? 'left-popup',
+  content.field_middle_popup[0] ? 'middle-popup',
+  content.field_right_popup[0] ? 'right-popup',
+] %}
 {% block paragraph %}
   <div{{ attributes.addClass(classes).setAttribute('data-paragraph-id', paragraph.id.value) }}>
     <div class="paragraph--inner">

@@ -39,16 +39,14 @@ We call a macro which calls itself to render the full tree.
       <ul class="menu">
     {% endif %}
       {% for item in items %}
-        {%
-          set classes = [
-            'menu-item',
-            item.is_expanded ? 'menu-item--expanded',
-            item.is_collapsed ? 'menu-item--collapsed',
-            item.in_active_trail ? 'menu-item--active-trail',
-          ]
-        %}
+        {% set classes = [
+          'menu-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+        ] %}
         <li{{ item.attributes.addClass(classes) }}>
-          {{ link(item.title, item.url, { 'class':['menu-link', 'js-menu-link']}) }}
+          {{ link(item.title, item.url, {'class': ['menu-link', 'js-menu-link']}) }}
           {% if item.is_expanded %}
             <i class="dropdown-arrow js-dropdown-arrow">
               <svg class="dropdown-arrow__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">

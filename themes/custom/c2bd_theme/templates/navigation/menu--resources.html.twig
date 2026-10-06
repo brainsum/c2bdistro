@@ -22,12 +22,10 @@
 <ul class="menu resources-menu">
   {% for key, item in items %}
     {% set resource = key|split('.')|last %}
-    {%
-      set classes = [
-      'menu-item',
-      resource|clean_class
-    ]
-    %}
+    {% set classes = [
+    'menu-item',
+    resource|clean_class
+    ] %}
     <li{{ item.attributes.addClass(classes) }}>
       <a href="{{ item.url }}">
         <span class="icon-holder">

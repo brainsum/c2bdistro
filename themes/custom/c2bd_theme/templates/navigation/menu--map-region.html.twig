@@ -22,12 +22,10 @@
 <ul class="menu regions-menu">
   {% for key, item in items %}
     {% set region = key|split('.')|last %}
-    {%
-      set classes = [
-        'menu-item',
-        region|clean_class
-      ]
-    %}
+    {% set classes = [
+      'menu-item',
+      region|clean_class
+    ] %}
     <li{{ item.attributes.addClass(classes) }}>
       <a href="{{ item.url }}">
         <span class="icon-holder">

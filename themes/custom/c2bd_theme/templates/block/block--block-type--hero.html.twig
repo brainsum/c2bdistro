@@ -26,13 +26,11 @@
  */
 #}
 {{ attach_library('c2bd_theme/block.hero') }}
-{%
-  set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-  ]
-%}
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -41,7 +39,7 @@
     <div class="hero-text">
       <div class="hero-text-container">
         <h1 class="hero-text-container-title">{{ content.field_title.0 }}</h1>
-        {% if  content.field_description.0['#context']['value'] is not empty %}
+        {% if content.field_description.0['#context']['value'] is not empty %}
           <p class="hero-text-container-description">{{ content.field_description.0['#context']['value'] }}</p>
         {% endif %}
         {% if content.field_link.0['#url'] is not empty %}
