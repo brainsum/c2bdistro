@@ -37,21 +37,17 @@
  * @see template_preprocess_field()
  */
 #}
-{%
-  set classes = [
-    'field',
-    'field--name-' ~ field_name|clean_class,
-    'field--type-' ~ field_type|clean_class,
-    'field--label-' ~ label_display,
-    label_display == 'inline' ? 'clearfix',
-  ]
-%}
-{%
-  set title_classes = [
-    'field__label',
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
-%}
+{% set classes = [
+  'field',
+  'field--name-' ~ field_name|clean_class,
+  'field--type-' ~ field_type|clean_class,
+  'field--label-' ~ label_display,
+  label_display == 'inline' ? 'clearfix',
+] %}
+{% set title_classes = [
+  'field__label',
+  label_display == 'visually_hidden' ? 'visually-hidden',
+] %}
 
 {% if label_hidden %}
   {% if multiple %}
@@ -73,11 +69,11 @@
     {% endif %}
     {% for item in items %}
       <div{{ item.attributes.addClass('field__item') }}>
-        {% set catID = item.content['#options'].entity.id %}
-        {% set param =  'tags_of_document:' ~ catID %}
-        {% set catUrl = path('view.search.resources', {'f[0]': param}) %}
-        {% set catTitle = item.content['#options'].entity.name.value %}
-        <a href="{{ catUrl }}" class="tag-link">{{ catTitle }}</a>
+        {% set cat_id = item.content['#options'].entity.id %}
+        {% set param = 'tags_of_document:' ~ cat_id %}
+        {% set cat_url = path('view.search.resources', {'f[0]': param}) %}
+        {% set cat_title = item.content['#options'].entity.name.value %}
+        <a href="{{ cat_url }}" class="tag-link">{{ cat_title }}</a>
         {# {{ devel_dump(item.content) }} #}
       </div>
     {% endfor %}

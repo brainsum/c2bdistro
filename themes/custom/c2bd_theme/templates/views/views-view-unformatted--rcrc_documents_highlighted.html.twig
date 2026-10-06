@@ -21,11 +21,9 @@
 </div>
 <div class="group-holder">
   {% for row in rows %}
-    {%
-      set row_classes = [
-      default_row_class ? 'document-row',
-    ]
-    %}
+    {% set row_classes = [
+    default_row_class ? 'document-row',
+    ] %}
     <div{{ row.attributes.addClass(row_classes) }}>
       {{- row.content -}}
     </div>
